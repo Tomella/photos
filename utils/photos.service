@@ -1,0 +1,12 @@
+[Unit]
+Description=Photos Logger Daemon
+After=syslog.target network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+ExecStart=/sbin/photos
+User=photos
+Group=photos
+[Install]
+WantedBy=multi-user.target

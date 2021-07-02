@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Don't really expect this to be run but it gives good hints on what to do to create a service.
+#
+sudo npm install -g forever
+sudo cp /home/photos/photos/utils/photos.service /etc/systemd/system/
+sudo cp /home/photos/photos/utils/photos /sbin
+sudo chmod 755 /sbin/photos
+sudo chown root:root /sbin/photos
+sudo systemctl enable photos

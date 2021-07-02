@@ -1,0 +1,35 @@
+{
+  "name": "photos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./start.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "express": "^4.17.1",
+    "jimp": "^0.16.1",
+    "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
+    "random-access-file": "^2.1.4",
+    "yargs": "^16.1.0"
+  },
+  "devDependencies": {
+    "add-stream": "^1.0.0",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-concat-css": "^3.1.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7"
+  }
+}

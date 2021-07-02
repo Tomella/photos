@@ -1,0 +1,400 @@
+TileHash { z: 1, x: 0, y: 0 }
+For a zoom of 1 there are x tiles 4, y tiles 2 and a width, halfwidth of 90, 45
+1/0/0
+{"filters":{},"properties":{},"x":-135,"y":-45}
+TileHash { z: 6, x: 103, y: 18 }
+For a zoom of 6 there are x tiles 128, y tiles 64 and a width, halfwidth of 2.8125, 1.40625
+6/103/18
+{"filters":{},"properties":{},"x":111.09375,"y":-37.96875}
+TileHash { z: 2, x: 7, y: 2 }
+For a zoom of 2 there are x tiles 8, y tiles 4 and a width, halfwidth of 45, 22.5
+2/7/2
+{"filters":{},"properties":{},"x":157.5,"y":22.5}
+TileHash { z: 17, x: 35925, y: 22258 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/35925/22258
+{"filters":{},"properties":{},"x":-130.66383361816406,"y":-59.43260192871094}
+TileHash { z: 8, x: 63, y: 192 }
+For a zoom of 8 there are x tiles 512, y tiles 256 and a width, halfwidth of 0.703125, 0.3515625
+8/63/192
+{"filters":{},"properties":{},"x":-135.3515625,"y":45.3515625}
+TileHash { z: 17, x: 56022, y: 53706 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/56022/53706
+{"filters":{},"properties":{},"x":-103.06480407714844,"y":-16.245346069335938}
+TileHash { z: 15, x: 19861, y: 4747 }
+For a zoom of 15 there are x tiles 65536, y tiles 32768 and a width, halfwidth of 0.0054931640625, 0.00274658203125
+15/19861/4747
+{"filters":{},"properties":{},"x":-70.89752197265625,"y":-63.92120361328125}
+TileHash { z: 9, x: 991, y: 309 }
+For a zoom of 9 there are x tiles 1024, y tiles 512 and a width, halfwidth of 0.3515625, 0.17578125
+9/991/309
+{"filters":{},"properties":{},"x":168.57421875,"y":18.80859375}
+TileHash { z: 9, x: 952, y: 0 }
+For a zoom of 9 there are x tiles 1024, y tiles 512 and a width, halfwidth of 0.3515625, 0.17578125
+9/952/0
+{"filters":{},"properties":{},"x":154.86328125,"y":-89.82421875}
+TileHash { z: 16, x: 27991, y: 8312 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/27991/8312
+{"filters":{},"properties":{},"x":-103.11904907226562,"y":-67.16903686523438}
+TileHash { z: 7, x: 124, y: 12 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/124/12
+{"filters":{},"properties":{},"x":-4.921875,"y":-72.421875}
+TileHash { z: 17, x: 196591, y: 71135 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/196591/71135
+{"filters":{},"properties":{},"x":89.97734069824219,"y":7.6897430419921875}
+TileHash { z: 1, x: 3, y: 1 }
+For a zoom of 1 there are x tiles 4, y tiles 2 and a width, halfwidth of 90, 45
+1/3/1
+{"filters":{},"properties":{},"x":135,"y":45}
+TileHash { z: 14, x: 15570, y: 13288 }
+For a zoom of 14 there are x tiles 32768, y tiles 16384 and a width, halfwidth of 0.010986328125, 0.0054931640625
+14/15570/13288
+{"filters":{},"properties":{},"x":-8.9373779296875,"y":55.9918212890625}
+TileHash { z: 6, x: 46, y: 34 }
+For a zoom of 6 there are x tiles 128, y tiles 64 and a width, halfwidth of 2.8125, 1.40625
+6/46/34
+{"filters":{},"properties":{},"x":-49.21875,"y":7.03125}
+TileHash { z: 10, x: 177, y: 514 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/177/514
+{"filters":{},"properties":{},"x":-148.798828125,"y":0.439453125}
+TileHash { z: 3, x: 13, y: 0 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/13/0
+{"filters":{},"properties":{},"x":123.75,"y":-78.75}
+TileHash { z: 5, x: 52, y: 17 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/52/17
+{"filters":{},"properties":{},"x":115.3125,"y":8.4375}
+TileHash { z: 17, x: 221982, y: 29151 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/221982/29151
+{"filters":{},"properties":{},"x":124.84657287597656,"y":-49.96650695800781}
+TileHash { z: 5, x: 12, y: 3 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/12/3
+{"filters":{},"properties":{},"x":-109.6875,"y":-70.3125}
+TileHash { z: 16, x: 75631, y: 32687 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/75631/32687
+{"filters":{},"properties":{},"x":27.728118896484375,"y":-0.221099853515625}
+TileHash { z: 10, x: 1733, y: 93 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/1733/93
+{"filters":{},"properties":{},"x":124.716796875,"y":-73.564453125}
+TileHash { z: 8, x: 253, y: 228 }
+For a zoom of 8 there are x tiles 512, y tiles 256 and a width, halfwidth of 0.703125, 0.3515625
+8/253/228
+{"filters":{},"properties":{},"x":-1.7578125,"y":70.6640625}
+TileHash { z: 12, x: 2157, y: 4057 }
+For a zoom of 12 there are x tiles 8192, y tiles 4096 and a width, halfwidth of 0.0439453125, 0.02197265625
+12/2157/4057
+{"filters":{},"properties":{},"x":-85.18798828125,"y":88.30810546875}
+TileHash { z: 4, x: 17, y: 15 }
+For a zoom of 4 there are x tiles 32, y tiles 16 and a width, halfwidth of 11.25, 5.625
+4/17/15
+{"filters":{},"properties":{},"x":16.875,"y":84.375}
+TileHash { z: 4, x: 26, y: 0 }
+For a zoom of 4 there are x tiles 32, y tiles 16 and a width, halfwidth of 11.25, 5.625
+4/26/0
+{"filters":{},"properties":{},"x":118.125,"y":-84.375}
+TileHash { z: 0, x: 1, y: 0 }
+For a zoom of 0 there are x tiles 2, y tiles 1 and a width, halfwidth of 180, 90
+0/1/0
+{"filters":{},"properties":{},"x":90,"y":0}
+TileHash { z: 11, x: 481, y: 1790 }
+For a zoom of 11 there are x tiles 4096, y tiles 2048 and a width, halfwidth of 0.087890625, 0.0439453125
+11/481/1790
+{"filters":{},"properties":{},"x":-137.6806640625,"y":67.3681640625}
+TileHash { z: 7, x: 149, y: 2 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/149/2
+{"filters":{},"properties":{},"x":30.234375,"y":-86.484375}
+TileHash { z: 1, x: 3, y: 0 }
+For a zoom of 1 there are x tiles 4, y tiles 2 and a width, halfwidth of 90, 45
+1/3/0
+{"filters":{},"properties":{},"x":135,"y":-45}
+TileHash { z: 0, x: 0, y: 0 }
+For a zoom of 0 there are x tiles 2, y tiles 1 and a width, halfwidth of 180, 90
+0/0/0
+{"filters":{},"properties":{},"x":-90,"y":0}
+TileHash { z: 7, x: 195, y: 51 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/195/51
+{"filters":{},"properties":{},"x":94.921875,"y":-17.578125}
+TileHash { z: 3, x: 4, y: 3 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/4/3
+{"filters":{},"properties":{},"x":-78.75,"y":-11.25}
+TileHash { z: 1, x: 3, y: 0 }
+For a zoom of 1 there are x tiles 4, y tiles 2 and a width, halfwidth of 90, 45
+1/3/0
+{"filters":{},"properties":{},"x":135,"y":-45}
+TileHash { z: 5, x: 24, y: 28 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/24/28
+{"filters":{},"properties":{},"x":-42.1875,"y":70.3125}
+TileHash { z: 10, x: 1447, y: 743 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/1447/743
+{"filters":{},"properties":{},"x":74.443359375,"y":40.693359375}
+TileHash { z: 16, x: 94290, y: 31316 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/94290/31316
+{"filters":{},"properties":{},"x":78.97659301757812,"y":-3.986663818359375}
+TileHash { z: 10, x: 255, y: 15 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/255/15
+{"filters":{},"properties":{},"x":-135.087890625,"y":-87.275390625}
+TileHash { z: 5, x: 21, y: 25 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/21/25
+{"filters":{},"properties":{},"x":-59.0625,"y":53.4375}
+TileHash { z: 15, x: 52741, y: 1582 }
+For a zoom of 15 there are x tiles 65536, y tiles 32768 and a width, halfwidth of 0.0054931640625, 0.00274658203125
+15/52741/1582
+{"filters":{},"properties":{},"x":109.71771240234375,"y":-81.30706787109375}
+TileHash { z: 17, x: 220282, y: 62437 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/220282/62437
+{"filters":{},"properties":{},"x":122.51197814941406,"y":-4.2551422119140625}
+TileHash { z: 6, x: 0, y: 52 }
+For a zoom of 6 there are x tiles 128, y tiles 64 and a width, halfwidth of 2.8125, 1.40625
+6/0/52
+{"filters":{},"properties":{},"x":-178.59375,"y":57.65625}
+TileHash { z: 7, x: 246, y: 89 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/246/89
+{"filters":{},"properties":{},"x":166.640625,"y":35.859375}
+TileHash { z: 17, x: 252217, y: 45860 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/252217/45860
+{"filters":{},"properties":{},"x":166.36802673339844,"y":-27.020187377929688}
+TileHash { z: 10, x: 1774, y: 403 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/1774/403
+{"filters":{},"properties":{},"x":131.923828125,"y":-19.072265625}
+TileHash { z: 11, x: 1986, y: 1310 }
+For a zoom of 11 there are x tiles 4096, y tiles 2048 and a width, halfwidth of 0.087890625, 0.0439453125
+11/1986/1310
+{"filters":{},"properties":{},"x":-5.4052734375,"y":25.1806640625}
+TileHash { z: 4, x: 25, y: 12 }
+For a zoom of 4 there are x tiles 32, y tiles 16 and a width, halfwidth of 11.25, 5.625
+4/25/12
+{"filters":{},"properties":{},"x":106.875,"y":50.625}
+TileHash { z: 7, x: 229, y: 14 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/229/14
+{"filters":{},"properties":{},"x":142.734375,"y":-69.609375}
+TileHash { z: 10, x: 353, y: 372 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/353/372
+{"filters":{},"properties":{},"x":-117.861328125,"y":-24.521484375}
+TileHash { z: 13, x: 4608, y: 3929 }
+For a zoom of 13 there are x tiles 16384, y tiles 8192 and a width, halfwidth of 0.02197265625, 0.010986328125
+13/4608/3929
+{"filters":{},"properties":{},"x":-78.739013671875,"y":-3.658447265625}
+TileHash { z: 15, x: 52387, y: 22345 }
+For a zoom of 15 there are x tiles 65536, y tiles 32768 and a width, halfwidth of 0.0054931640625, 0.00274658203125
+15/52387/22345
+{"filters":{},"properties":{},"x":107.77313232421875,"y":32.74749755859375}
+TileHash { z: 15, x: 40984, y: 18679 }
+For a zoom of 15 there are x tiles 65536, y tiles 32768 and a width, halfwidth of 0.0054931640625, 0.00274658203125
+15/40984/18679
+{"filters":{},"properties":{},"x":45.13458251953125,"y":12.60955810546875}
+TileHash { z: 10, x: 39, y: 866 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/39/866
+{"filters":{},"properties":{},"x":-173.056640625,"y":62.314453125}
+TileHash { z: 3, x: 5, y: 5 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/5/5
+{"filters":{},"properties":{},"x":-56.25,"y":33.75}
+TileHash { z: 0, x: 1, y: 0 }
+For a zoom of 0 there are x tiles 2, y tiles 1 and a width, halfwidth of 180, 90
+0/1/0
+{"filters":{},"properties":{},"x":90,"y":0}
+TileHash { z: 8, x: 232, y: 173 }
+For a zoom of 8 there are x tiles 512, y tiles 256 and a width, halfwidth of 0.703125, 0.3515625
+8/232/173
+{"filters":{},"properties":{},"x":-16.5234375,"y":31.9921875}
+TileHash { z: 7, x: 228, y: 72 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/228/72
+{"filters":{},"properties":{},"x":141.328125,"y":11.953125}
+TileHash { z: 16, x: 49442, y: 17323 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/49442/17323
+{"filters":{},"properties":{},"x":-44.202117919921875,"y":-42.419586181640625}
+TileHash { z: 16, x: 31870, y: 42299 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/31870/42299
+{"filters":{},"properties":{},"x":-92.46505737304688,"y":26.179046630859375}
+TileHash { z: 3, x: 14, y: 3 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/14/3
+{"filters":{},"properties":{},"x":146.25,"y":-11.25}
+TileHash { z: 17, x: 31374, y: 120670 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/31374/120670
+{"filters":{},"properties":{},"x":-136.91368103027344,"y":75.71571350097656}
+TileHash { z: 7, x: 47, y: 118 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/47/118
+{"filters":{},"properties":{},"x":-113.203125,"y":76.640625}
+TileHash { z: 12, x: 582, y: 614 }
+For a zoom of 12 there are x tiles 8192, y tiles 4096 and a width, halfwidth of 0.0439453125, 0.02197265625
+12/582/614
+{"filters":{},"properties":{},"x":-154.40185546875,"y":-62.99560546875}
+TileHash { z: 10, x: 1059, y: 667 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/1059/667
+{"filters":{},"properties":{},"x":6.240234375,"y":27.333984375}
+TileHash { z: 16, x: 14743, y: 912 }
+For a zoom of 16 there are x tiles 131072, y tiles 65536 and a width, halfwidth of 0.00274658203125, 0.001373291015625
+16/14743/912
+{"filters":{},"properties":{},"x":-139.50576782226562,"y":-87.49374389648438}
+TileHash { z: 3, x: 4, y: 2 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/4/2
+{"filters":{},"properties":{},"x":-78.75,"y":-33.75}
+TileHash { z: 11, x: 3549, y: 689 }
+For a zoom of 11 there are x tiles 4096, y tiles 2048 and a width, halfwidth of 0.087890625, 0.0439453125
+11/3549/689
+{"filters":{},"properties":{},"x":131.9677734375,"y":-29.3994140625}
+TileHash { z: 13, x: 4736, y: 1433 }
+For a zoom of 13 there are x tiles 16384, y tiles 8192 and a width, halfwidth of 0.02197265625, 0.010986328125
+13/4736/1433
+{"filters":{},"properties":{},"x":-75.926513671875,"y":-58.502197265625}
+TileHash { z: 11, x: 1057, y: 189 }
+For a zoom of 11 there are x tiles 4096, y tiles 2048 and a width, halfwidth of 0.087890625, 0.0439453125
+11/1057/189
+{"filters":{},"properties":{},"x":-87.0556640625,"y":-73.3447265625}
+TileHash { z: 2, x: 0, y: 0 }
+For a zoom of 2 there are x tiles 8, y tiles 4 and a width, halfwidth of 45, 22.5
+2/0/0
+{"filters":{},"properties":{},"x":-157.5,"y":-67.5}
+TileHash { z: 4, x: 24, y: 8 }
+For a zoom of 4 there are x tiles 32, y tiles 16 and a width, halfwidth of 11.25, 5.625
+4/24/8
+{"filters":{},"properties":{},"x":95.625,"y":5.625}
+TileHash { z: 15, x: 41850, y: 8575 }
+For a zoom of 15 there are x tiles 65536, y tiles 32768 and a width, halfwidth of 0.0054931640625, 0.00274658203125
+15/41850/8575
+{"filters":{},"properties":{},"x":49.89166259765625,"y":-42.89337158203125}
+TileHash { z: 3, x: 13, y: 3 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/13/3
+{"filters":{},"properties":{},"x":123.75,"y":-11.25}
+TileHash { z: 8, x: 487, y: 140 }
+For a zoom of 8 there are x tiles 512, y tiles 256 and a width, halfwidth of 0.703125, 0.3515625
+8/487/140
+{"filters":{},"properties":{},"x":162.7734375,"y":8.7890625}
+TileHash { z: 14, x: 17482, y: 4015 }
+For a zoom of 14 there are x tiles 32768, y tiles 16384 and a width, halfwidth of 0.010986328125, 0.0054931640625
+14/17482/4015
+{"filters":{},"properties":{},"x":12.0684814453125,"y":-45.8843994140625}
+TileHash { z: 17, x: 134128, y: 118524 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/134128/118524
+{"filters":{},"properties":{},"x":4.1974639892578125,"y":72.76863098144531}
+TileHash { z: 7, x: 77, y: 95 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/77/95
+{"filters":{},"properties":{},"x":-71.015625,"y":44.296875}
+TileHash { z: 5, x: 0, y: 26 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/0/26
+{"filters":{},"properties":{},"x":-177.1875,"y":59.0625}
+TileHash { z: 5, x: 53, y: 28 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/53/28
+{"filters":{},"properties":{},"x":120.9375,"y":70.3125}
+TileHash { z: 10, x: 1471, y: 251 }
+For a zoom of 10 there are x tiles 2048, y tiles 1024 and a width, halfwidth of 0.17578125, 0.087890625
+10/1471/251
+{"filters":{},"properties":{},"x":78.662109375,"y":-45.791015625}
+TileHash { z: 14, x: 2270, y: 2475 }
+For a zoom of 14 there are x tiles 32768, y tiles 16384 and a width, halfwidth of 0.010986328125, 0.0054931640625
+14/2270/2475
+{"filters":{},"properties":{},"x":-155.0555419921875,"y":-62.8033447265625}
+TileHash { z: 11, x: 228, y: 1053 }
+For a zoom of 11 there are x tiles 4096, y tiles 2048 and a width, halfwidth of 0.087890625, 0.0439453125
+11/228/1053
+{"filters":{},"properties":{},"x":-159.9169921875,"y":2.5927734375}
+TileHash { z: 5, x: 48, y: 25 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/48/25
+{"filters":{},"properties":{},"x":92.8125,"y":53.4375}
+TileHash { z: 12, x: 5918, y: 3090 }
+For a zoom of 12 there are x tiles 8192, y tiles 4096 and a width, halfwidth of 0.0439453125, 0.02197265625
+12/5918/3090
+{"filters":{},"properties":{},"x":80.09033203125,"y":45.81298828125}
+TileHash { z: 17, x: 214851, y: 65722 }
+For a zoom of 17 there are x tiles 262144, y tiles 131072 and a width, halfwidth of 0.001373291015625, 0.0006866455078125
+17/214851/65722
+{"filters":{},"properties":{},"x":115.05363464355469,"y":0.2561187744140625}
+TileHash { z: 5, x: 23, y: 11 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/23/11
+{"filters":{},"properties":{},"x":-47.8125,"y":-25.3125}
+TileHash { z: 2, x: 5, y: 2 }
+For a zoom of 2 there are x tiles 8, y tiles 4 and a width, halfwidth of 45, 22.5
+2/5/2
+{"filters":{},"properties":{},"x":67.5,"y":22.5}
+TileHash { z: 8, x: 274, y: 229 }
+For a zoom of 8 there are x tiles 512, y tiles 256 and a width, halfwidth of 0.703125, 0.3515625
+8/274/229
+{"filters":{},"properties":{},"x":13.0078125,"y":71.3671875}
+TileHash { z: 3, x: 9, y: 0 }
+For a zoom of 3 there are x tiles 16, y tiles 8 and a width, halfwidth of 22.5, 11.25
+3/9/0
+{"filters":{},"properties":{},"x":33.75,"y":-78.75}
+TileHash { z: 4, x: 28, y: 8 }
+For a zoom of 4 there are x tiles 32, y tiles 16 and a width, halfwidth of 11.25, 5.625
+4/28/8
+{"filters":{},"properties":{},"x":140.625,"y":5.625}
+TileHash { z: 13, x: 12074, y: 7101 }
+For a zoom of 13 there are x tiles 16384, y tiles 8192 and a width, halfwidth of 0.02197265625, 0.010986328125
+13/12074/7101
+{"filters":{},"properties":{},"x":85.308837890625,"y":66.038818359375}
+TileHash { z: 2, x: 0, y: 3 }
+For a zoom of 2 there are x tiles 8, y tiles 4 and a width, halfwidth of 45, 22.5
+2/0/3
+{"filters":{},"properties":{},"x":-157.5,"y":67.5}
+TileHash { z: 5, x: 55, y: 12 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/55/12
+{"filters":{},"properties":{},"x":132.1875,"y":-19.6875}
+TileHash { z: 5, x: 10, y: 1 }
+For a zoom of 5 there are x tiles 64, y tiles 32 and a width, halfwidth of 5.625, 2.8125
+5/10/1
+{"filters":{},"properties":{},"x":-120.9375,"y":-81.5625}
+TileHash { z: 7, x: 127, y: 67 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/127/67
+{"filters":{},"properties":{},"x":-0.703125,"y":4.921875}
+TileHash { z: 14, x: 2651, y: 8694 }
+For a zoom of 14 there are x tiles 32768, y tiles 16384 and a width, halfwidth of 0.010986328125, 0.0054931640625
+14/2651/8694
+{"filters":{},"properties":{},"x":-150.8697509765625,"y":5.5206298828125}
+TileHash { z: 0, x: 1, y: 0 }
+For a zoom of 0 there are x tiles 2, y tiles 1 and a width, halfwidth of 180, 90
+0/1/0
+{"filters":{},"properties":{},"x":90,"y":0}
+TileHash { z: 12, x: 4251, y: 3650 }
+For a zoom of 12 there are x tiles 8192, y tiles 4096 and a width, halfwidth of 0.0439453125, 0.02197265625
+12/4251/3650
+{"filters":{},"properties":{},"x":6.83349609375,"y":70.42236328125}
+TileHash { z: 7, x: 231, y: 124 }
+For a zoom of 7 there are x tiles 256, y tiles 128 and a width, halfwidth of 1.40625, 0.703125
+7/231/124
+{"filters":{},"properties":{},"x":145.546875,"y":85.078125}
+TileHash { z: 14, x: 5313, y: 3079 }
+For a zoom of 14 there are x tiles 32768, y tiles 16384 and a width, halfwidth of 0.010986328125, 0.0054931640625
+14/5313/3079
+{"filters":{},"properties":{},"x":-121.6241455078125,"y":-56.1676025390625}

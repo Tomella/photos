@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Script for starting the photos app.
+#
+
+# We need environment variables for passwords and the likes
+. /home/photos/.profile
+cd /home/photos
+sleep 10s
+
+if [ ! -d log ]; then
+  mkdir -p log;
+fi
+
+if [ ! -f log/photos.log ]; then
+  touch log/photos.log;
+fi
+
+cd photos
+# options
+LOGFILE=/home/photos/log/photos.log
+LOCKFILE=/var/lock/subsys/photos
+/usr/bin/forever start -a -l $LOGFILE --spinSleepTime 60000 --uid photos server.js
