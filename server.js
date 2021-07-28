@@ -74,9 +74,9 @@ async function run() {
 
 
    passport.use(new FacebookStrategy({
-      clientID: config.auth.PHOTOS_FACEBOOK_CLIENT_ID,
-      clientSecret: config.auth.PHOTOS_FACEBOOK_CLIENT_SECRET,
-      callbackURL: config.auth.PHOTOS_FACEBOOK_CALLBACK_URL,
+      clientID: config.auth.clientID,
+      clientSecret: config.auth.clientSecret,
+      callbackURL: config.auth.callbackURL,
       failureFlash: true,
       profileFields: ["email", "name"]
    },
