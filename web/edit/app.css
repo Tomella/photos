@@ -1,0 +1,45 @@
+#mapEdit {
+    padding: 3px;
+    position: fixed;
+    right: 3px;
+    width: 256px;
+    height: 256px;
+    top: 0;
+}
+
+#heading {
+    position: fixed;
+    top:10px;
+    left:20px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#messages {
+    position: fixed;
+    left: 200px;
+    top: 10px;
+    display: inline-block;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+#thumb-link {
+    padding: 3px;
+    position: fixed;
+    top: 256px;
+    right: 0px;
+    background-color: white;
+    z-index: 30;
+}
+
+.leaflet-left {
+    z-index: 2000;
+}
+
+ph-photo-form {
+    position: fixed;
+    left: 20px;
+    top: 50px;
+    z-index: 1;  
+}

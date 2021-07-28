@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Photo</title>
+    <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="/thirdparty/markercluster.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="app.css" />
+
+    <script type="module" src="/components/ph-form.js"></script>
+    <script type="module" src="/components/ph-messages.js"></script>
+
+    <style>
+        /* A work around for an annoying little white box on my Google tiles. */
+        .leaflet-google-layer img {
+            transform: scale(1.005);
+        }
+    </style>
+</head>
+
+<body>
+    <span id="heading" ><a href="/">&lt;&nbsp;</a>Edit Photo</span>
+    <div id="thumb-link" class="thumb-image-container">
+        <div>
+            <img class="thumb-img"></img>
+        </div>
+    </div>
+    <div id="mapEdit"></div>
+    <ph-photo-form></ph-photo-form>
+    <ph-messages id="messages" type="info" value="Annotate image, generate thumbnail" duration="12"></ph-messages>
+    <a target="photos-photo" id="full-size-image-link">
+        <img id="full-size-image" style="width:100%"></img>
+    </a>
+    <script>
+        let data = <%- data %>;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin="anonymous"></script>
+
+    <script src="/thirdparty/markercluster.js"></script>
+    <script src="/lib/latlon.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

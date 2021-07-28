@@ -15,6 +15,24 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <style>
+        .facebook {
+            background-color: #3b5998 !important;
+            color: #fff !important;
+        }
+
+        .fa-facebook-f:before,
+        .fa-facebook:before {
+            content: "\f09a";
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
     <link rel="stylesheet" href="app/app.css" />
     <style>
         /* A work around for an annoying little white box on my Google tiles. */
@@ -35,69 +53,27 @@
     <ph-thumb-link id="thumb-link"></ph-thumb-link>
     <ph-menu id="menu"></ph-menu>
     <div class="place-bottom">
-        <div id="spinner" style="
-            background: #1877F2;
-            border-radius: 5px;
-            color: white;
-            height: 20px;
-            text-align: center;
-            width: 150px;">
-            Loading
+        <div id="nameDiv" class="card-action hide">
+            <a href="/logout" class="waves-effect waves-light btn social facebook" title="Click to logout of this app (only).">
+                <i class="fab fa-facebook"></i><span style="padding-left:6px;border-bottom: 3px;" id="nameTarget"></span>
+            </a>
         </div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-use-continue-as="true">
-        </fb:login-button>
+
+        <div id="loginDiv" class="card-action">
+            <a href="/auth/facebook" class="waves-effect waves-light btn social facebook">
+                <i class="fab fa-facebook"></i> Sign in with facebook
+            </a>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin="anonymous"></script>
     <script src="thirdparty/markercluster.js"></script>
     <script src="lib/latlon.js"></script>
+
+    <script type="module" src="app/facebook.js"></script>
     <script type="module" src="app/app.js"></script>
 
-    <script>
-        const authorization = {};
-
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '801539600776006',
-                cookie: true,
-                xfbml: true,
-                version: 'v10.0'
-            });
-
-            FB.AppEvents.logPageView();
-            console.log("Facebook initted");
-
-            FB.Event.subscribe('xfbml.render', () => {
-                console.log("finished rendering plugins");
-                var spinner = document.getElementById("spinner");
-                spinner.removeAttribute("style");
-                spinner.removeChild(spinner.childNodes[0]);
-            });
-
-        };
-
-        function checkLoginState() {
-            FB.getLoginStatus(function (response) {
-                FB.api('/me', function(response) {
-                    console.log(response);
-                    console.log('Successful login for: ' + response.name);
-                    document.getElementById('status').innerHTML =
-                    'Thanks for logging in, ' + response.name + '!';
-                });
-                console.log(response);
-            });
-        }
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-    </script>
 </body>
 
 </html>

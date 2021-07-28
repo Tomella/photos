@@ -8,9 +8,19 @@ template.innerHTML = `
 }
 .ph-thumb-unstick {
    background-color: white;
-   border-radius:10px;
-   border-style: none;
+   border-radius:6px;
+   border-style: solid;
+   border-color: lightgray;
    padding-top: 3px;
+   opacity: 0.6;
+}
+.ph-thumb-edit {
+   font-size: 90%;
+   background-color: white;
+   padding-bottom: 3px;
+   border-radius:6px;
+   border-style: solid;
+   border-color: lightgray;
    opacity: 0.6;
 }
 .ph-dialog-heading {
@@ -19,9 +29,16 @@ template.innerHTML = `
    overflow: hidden;
    text-overflow: ellipsis;
 }
+
+.hide {
+   display: none;
+}
 </style>
 <div class="ph-thumb-link-container">
-   <button class="undecorated ph-thumb-unstick" style="position:absolute;right:0">X</button>
+   <span style="position:absolute;right:0">
+      <button class="undecorated ph-thumb-edit hide" title="Edit image details such as look of thumbnail and annotating the image">🖉</button>
+      <button class="undecorated ph-thumb-unstick" title="Hide thumbnail.">X</button>
+   </span>
    <div>
      <a target="ph-thumb-link" class="ph-thumb-link"><img class="ph-thumb-img"></img></a>
      <div class="ph-dialog-heading"></div>
@@ -31,7 +48,9 @@ template.innerHTML = `
 `;
 
 customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
-   static get observedAttributes() { return ['src', 'href', 'title']; }
+   static get observedAttributes() { return ['src', 'href', 'title', 'edit']; }
+
+   _data = null;
 
    $(selector) {
       return this.shadowRoot && this.shadowRoot.querySelector(selector);
@@ -42,8 +61,11 @@ customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
       const root = this.attachShadow({ mode: 'open' });
       root.appendChild(template.content.cloneNode(true));
       this._title();
-      this.$("button").addEventListener("click", (e) => {
+      this.$("button.ph-thumb-unstick").addEventListener("click", (e) => {
          this.dispatchEvent(new CustomEvent('close', { detail: e }));
+      });
+      this.$("button.ph-thumb-edit").addEventListener("click", (e) => {
+         this.dispatchEvent(new CustomEvent('edit', { detail: this._data }));
       });
    }
 
@@ -59,6 +81,17 @@ customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
       console.log("focus set.");
    }
 
+   _edit() {
+      let edit = this.getAttribute("edit");
+      console.log("EE", edit);
+      let target =  this.$(".ph-thumb-edit");
+      if(edit === "true" || edit === "Y" || edit === "1") {
+         target.classList.remove("hide");
+      } else {
+         target.classList.add("hide");
+      }
+   }
+
    _src() {
       let src = this.getAttribute("src");
       this.$(".ph-thumb-img").setAttribute("src", src);
@@ -71,6 +104,7 @@ customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
    }
 
    set data(value) {
+      this._data = value;
       let info = this.$(".ph-extra-info");
       if (value) {
          info.innerHTML = `<strong>Timestamp: </strong>${value.time_point}<br/><strong>Make/Model: </strong>${value.description}`;

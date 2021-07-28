@@ -6,7 +6,7 @@ template.innerHTML = `
 .ph-messages {
     position: absolute;
     left:0;
-    opacity:1;
+    opacity: 0.8;
     text-align: center;
     font-size: 110%;
     padding:5px;
@@ -30,20 +30,12 @@ template.innerHTML = `
     content: "❌";
 }
 
-.ph-messages-success > .ph-messages-type::before {
-    content: "✅";
-}
-
 .ph-messages-info > .ph-messages-type::before {
     content: "💭";
 }
 
 .ph-messages-warn > .ph-messages-type::before {
     content: "❕";
-}
-
-.ph-messages-success {
-    background-color: #CFF9D6;
 }
 
 .ph-messages-warn {
@@ -63,7 +55,7 @@ template.innerHTML = `
 `;
 let timeout = null;
 
-customElements.define('ph-messages', class Messages extends HTMLElement {
+customElements.define('ph-add-image', class AddImage extends HTMLElement {
     static get observedAttributes() { return ['value', 'type', 'duration']; }
 
     $(selector) {
@@ -111,7 +103,6 @@ customElements.define('ph-messages', class Messages extends HTMLElement {
 
     _setClass(name) {
         let type = this.$(".ph-messages");
-        type.classList.remove("ph-messages-success");
         type.classList.remove("ph-messages-hide");
         type.classList.remove("ph-messages-warn");
         type.classList.remove("ph-messages-info");

@@ -1,6 +1,7 @@
 import Map from "./map.js";
 import config from "./config.js";
 import Tracker from "./tracker.js";
+import user from "/user.js";
 
 class Icon {
     VIEWING_CLASS = "marker-cluster-viewing"
@@ -47,10 +48,16 @@ phThumbLink.addEventListener("close", (e) => {
     clusterOut();
 });
 
+phThumbLink.addEventListener("edit", (e) => {
+    console.log("EDIT: ", e.detail);
+    window.location = "/edit/" + e.detail.id;
+});
+
 document.addEventListener("clusterclick", clusterClick);
 document.addEventListener("clusterover", clusterOver);
 document.addEventListener("clusterout", clusterOut);
 document.addEventListener("message", message);
+document.addEventListener("loggedin", loggedIn);
 
 document.addEventListener("keyup", function(evt) {
     var isEscape = false;
@@ -64,6 +71,13 @@ document.addEventListener("keyup", function(evt) {
         clusterOut();
     }
 });
+
+
+if(user.name) {
+    console.log("User fetched", user);
+    document.dispatchEvent(new CustomEvent('loggedin', { detail: user}));
+}
+
 
 function message(event) {
     // TODO We want to run an event driven message service.
@@ -113,9 +127,12 @@ function clusterOver(event) {
     lastIcon = new Icon(layer);
     lastIcon.active();
     
+    let title = properties.name;
+    if (properties.annotation) title = properties.annotation;
+
     phThumbLink.data = null;
     phThumbLink.setAttribute("src", config.tracker.thumbsPath + properties.name);
-    phThumbLink.setAttribute("title", properties.name);
+    phThumbLink.setAttribute("title", title);
     phThumbLink.setAttribute("href", config.tracker.photosPath + properties.name);
 }
 
@@ -130,14 +147,7 @@ function clusterOut(event) {
     phThumbLink.setAttribute("title", "");
     phThumbLink.data = null;
 }
-/* An example of dispatching a message into the message panel
-setTimeout(() => {
-    document.dispatchEvent(new CustomEvent("message", {
-        detail: {
-            type: "error",
-            value: "Testing",
-            duration: 5
-        }
-    }));
-},4000);
-*/
+
+function loggedIn(event) {
+    phThumbLink.setAttribute("edit", event.detail.admin);
+}
