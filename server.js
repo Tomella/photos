@@ -74,9 +74,9 @@ async function run() {
 
 
    passport.use(new FacebookStrategy({
-      clientID: "801539600776006",
-      clientSecret: "f5cc4d347da96dba6c4f3b72405907e5",
-      callbackURL: "https://photos.geospeedster.com/callback/facebook",
+      clientID: config.auth.PHOTOS_FACEBOOK_CLIENT_ID,
+      clientSecret: config.auth.PHOTOS_FACEBOOK_CLIENT_SECRET,
+      callbackURL: config.auth.PHOTOS_FACEBOOK_PHOTOS_FACEBOOK_CALLBACK_URL,
       failureFlash: true,
       profileFields: ["email", "name"]
    },
