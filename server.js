@@ -12,6 +12,8 @@ import User from "./lib/user.js";
 import ExtentRequest from "./src/quadtree/extentrequest.js";
 import QueryingService from "./src/photos/queryingservice.js";
 
+import KeywordsRouter from "./routers/keywords.js";
+
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -33,11 +35,9 @@ async function run() {
    const photo = new Photo(pool);
    const user = new User(pool);
    const thumb = new Thumb(config.server);
+   const keywordsRouter = new KeywordsRouter(pool);
 
    points = await photo.all();
-
-
-   console.log(JSON.stringify(points, null, 2));
 
    let queryingService = new QueryingService(config);
    let photos = await photo.all();
@@ -54,6 +54,7 @@ async function run() {
    app.use(express.static("photos"));
    app.use('/src', express.static('src'));
 
+   app.use('/keywords', keywordsRouter.router);
 
    app.use(session({
       resave: false,
@@ -72,6 +73,7 @@ async function run() {
       cb(null, obj);
    });
 
+   console.log("Auth", config.auth)
 
    passport.use(new FacebookStrategy({
       clientID: config.auth.clientID,
@@ -114,7 +116,8 @@ async function run() {
          response =  { name: req.user.name, admin: req.user.admin};
       }
       let str = "export default " + JSON.stringify(response);
-      res.setHeader('Content-Type', "application/javascript; charset=UTF-8").send(str);
+      res.setHeader('Content-Type', "application/javascript; charset=UTF-8");
+      res.send(str);
    });
 
    app.all('/error', async (req, res) => {
@@ -152,7 +155,7 @@ async function run() {
          } else {
             res.status(200).send(str);
          }
-      })
+      });
    });
 
    // Direction can be right, left, 180 or original. All are relative to the original photo.
@@ -197,6 +200,7 @@ function isLoggedIn(req, res, next) {
    res.redirect('/');
 }
 
+// Just an abreviated version of all points.
 function pointsToJson(photos, name = "photos") {
    return {
       type: "FeatureCollection",
