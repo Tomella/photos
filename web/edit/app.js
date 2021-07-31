@@ -80,7 +80,7 @@ async function createThumb({ detail }) {
     directMessage({
         type: "info",
         value: "Generating new thumbnail...",
-        duration: 8
+        duration: 20
     });
     let response = await fetch(
         '/rotatethumb/' + detail.direction + '?id=' + detail.data.id,
@@ -88,6 +88,8 @@ async function createThumb({ detail }) {
     );
     let data = await response.json();
 
+    clearMessage();
+    
     thumb.src = config.tracker.thumbsPath + data.filename + "?d=" + Date.now();
     console.log(thumb.src);
 }
@@ -96,6 +98,10 @@ function directMessage(detail) {
     phMessages.setAttribute('value', detail.value);
     phMessages.setAttribute('type', detail.type);
     phMessages.setAttribute('duration', detail.duration ? detail.duration : 7);
+}
+
+function clearMessage() {
+    phMessages.setAttribute('clear', Date.now());
 }
 
 function message(event) {

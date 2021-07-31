@@ -64,7 +64,7 @@ template.innerHTML = `
 let timeout = null;
 
 customElements.define('ph-messages', class Messages extends HTMLElement {
-    static get observedAttributes() { return ['value', 'type', 'duration']; }
+    static get observedAttributes() { return ['value', 'type', 'duration', 'clear']; }
 
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector)
