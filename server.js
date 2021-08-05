@@ -13,6 +13,7 @@ import ExtentRequest from "./src/quadtree/extentrequest.js";
 import QueryingService from "./src/photos/queryingservice.js";
 
 import KeywordsRouter from "./routers/keywords.js";
+import DeleteRouter from "./routers/delete.js";
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -24,10 +25,6 @@ const FacebookStrategy = passportFacebook.Strategy;
 
 const port = 3000;
 
-let points = null;
-
-
-
 run().then(() => console.log("Running"));
 
 async function run() {
@@ -35,9 +32,12 @@ async function run() {
    const photo = new Photo(pool);
    const user = new User(pool);
    const thumb = new Thumb(config.server);
-   const keywordsRouter = new KeywordsRouter(pool);
 
-   points = await photo.all();
+   const keywordsRouter = new KeywordsRouter(pool);
+   const deleteRouter = new DeleteRouter(config.server, photo);
+   deleteRouter.router.use(isAdmin);
+   deleteRouter.addRoutes();
+
 
    let queryingService = new QueryingService(config);
    let photos = await photo.all();
@@ -55,6 +55,7 @@ async function run() {
    app.use('/src', express.static('src'));
 
    app.use('/keywords', keywordsRouter.router);
+   app.use('/delete', deleteRouter.router);
 
    app.use(session({
       resave: false,
@@ -145,7 +146,7 @@ async function run() {
    });
 
    app.all('/edit/:id', isAdmin, async (req, res) => {
-      let data = await photo.findById(req.params.id);
+      let data = await photo.findByIdWithAdjacent(req.params.id);
 
       ejs.renderFile(__dirname + "/views/edit.ejs", { data: JSON.stringify(data) }, {}, function (err, str) {
          if (err) {
@@ -187,6 +188,8 @@ async function run() {
 }
 
 function isAdmin(req, res, next) {
+   //console.log("is admin")
+   //return next();
    if (req.isAuthenticated() && req.user && req.user.admin === "Y") {
       return next();
 

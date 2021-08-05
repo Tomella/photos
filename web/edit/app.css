@@ -13,6 +13,11 @@
     left:20px;
     font-size: 150%;
     font-weight: bold;
+    text-shadow: 1px 1px #FFffff;
+}
+
+#heading a {
+    color:black;
 }
 
 #messages {
@@ -43,3 +48,27 @@ ph-photo-form {
     top: 50px;
     z-index: 1;  
 }
+
+ph-previous-next {
+    position: fixed;
+    left: 0px;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    z-index: 40;  
+}
+
+ph-confirm-delete {
+    position: fixed;
+    z-index: 1001;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+ph-confirm-delete.hide {
+    z-index: -1;
+}
+
+

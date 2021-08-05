@@ -18,14 +18,8 @@
     <link rel="stylesheet" href="app.css" />
 
     <script type="module" src="/components/ph-form.js"></script>
+    <script type="module" src="/components/ph-previous-next.js"></script>
     <script type="module" src="/components/ph-messages.js"></script>
-
-    <style>
-        /* A work around for an annoying little white box on my Google tiles. */
-        .leaflet-google-layer img {
-            transform: scale(1.005);
-        }
-    </style>
 </head>
 
 <body>
@@ -38,9 +32,13 @@
     <div id="mapEdit"></div>
     <ph-photo-form></ph-photo-form>
     <ph-messages id="messages" type="info" value="Annotate image, generate thumbnail" duration="12"></ph-messages>
+
+    <img id="thumbs-size-image" style="width:100%"></img>
     <a target="photos-photo" id="full-size-image-link">
         <img id="full-size-image" style="width:100%"></img>
     </a>
+    <ph-previous-next></ph-previous-next>
+
     <script>
         let data = <%- data %>;
     </script>

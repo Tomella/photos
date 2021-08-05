@@ -8,6 +8,24 @@ template.innerHTML = `
             background-color:white;
             opacity: 0.8;
             border-radius:4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #form-confirm {
+            border: 30px;
+            border-radius: 4px;
+            background-color:white;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+        }
+
+        .form-confirm-show {
+            display: block;
+            width: 100%;
+            height: 100%
         }
 
         label {
@@ -15,13 +33,31 @@ template.innerHTML = `
             font-weight: bold;
             display: inline-block;
         }
+        
+        .hide {
+            display: none;
+        }
 
+        .deleteBtn {
+        
+        }
     </style>
     <div id="form-container">
+        <div id="form-confirm" class="hide">
+            <div style="padding:10px;padding-left: 30px; padding-right: 30px">
+                <h3>Warning - This can not be undone.</h3>
+                <div>Are you sure you want to delete this photo, thumbnail and record?</div>
+                <div style="padding-top: 40px;">
+                    <button style="float: left;" name="form-delete-cancel">Cancel</button>
+                    <button style="float: right;" name="form-delete-confirm">I am sure</button>
+                </div>
+            </div>
+        </div>
         <input type="hidden" name="id" /> 
         <div class="form-field">
             <label for="filename">File Name </label>
             <span name="filename"></span> 
+            <button name="deleteBtn" style="float:right" title="Can not be undone">Delete</button>
         </div>
         <div class="form-field">
             <label for="created">Creation Date </label>
@@ -100,9 +136,26 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
         this.$name("rotate-180").addEventListener("click", event => {
             broadcast("180", this._data);
         });
+
         this.$name("save-annotation").addEventListener("click", event => {
             this._data.annotation = this.$name("annotation").value;
             document.dispatchEvent(new CustomEvent('saveannotation', {detail: this._data}));
+        });
+
+        this.$name("form-delete-cancel").addEventListener("click", event => {
+            let confirm = this.$("#form-confirm");
+            confirm.classList.add("hide");
+            confirm.classList.remove("form-confirm-show");
+        });
+
+        this.$name("form-delete-confirm").addEventListener("click", event => {
+            document.dispatchEvent(new CustomEvent('deletephoto', {detail: this._data}));
+        });
+
+        this.$name("deleteBtn").addEventListener("click", event => {
+            let confirm = this.$("#form-confirm");
+            confirm.classList.remove("hide");
+            confirm.classList.add("form-confirm-show");
         });
 
         function broadcast(direction, data) {

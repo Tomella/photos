@@ -33,6 +33,8 @@ const FETCH_POST = {
 let form = document.querySelector("ph-photo-form");
 form.data = data;
 
+
+
 let phMessages = document.querySelector("ph-messages");
 
 let thumbImage = document.querySelector("#thumb-link")
@@ -41,13 +43,23 @@ thumb.src = config.tracker.thumbsPath + data.filename;
 
 document.addEventListener("thumbrotate", createThumb);
 document.addEventListener("saveannotation", saveAnnotation);
+document.addEventListener("deletephoto", deletePhoto);
 document.addEventListener("message", message);
 
+let thumbsSizeImage = document.querySelector("#thumbs-size-image");
+thumbsSizeImage.setAttribute("src", thumb.src);
 
 let imagePath = config.tracker.photosPath + data.filename
 let imageLink = document.querySelector("#full-size-image-link");
 imageLink.setAttribute("href", imagePath);
-document.querySelector("#full-size-image").setAttribute("src", imagePath);
+let fullSizeImage = document.querySelector("#full-size-image");
+fullSizeImage.addEventListener('load', (event) => {
+    console.log('The image has fully loaded');
+    thumbsSizeImage.parentElement.removeChild(thumbsSizeImage);
+});
+fullSizeImage.setAttribute("src", imagePath);
+
+
 
 let mapManager = new Map(config.map);
 mapManager.create();
@@ -55,6 +67,35 @@ let map = mapManager.map;
 let point = [data.latitude, data.longitude];
 let marker = L.marker(point).addTo(map);
 map.setView(point);
+
+
+let nextPrevious = document.querySelector("ph-previous-next");
+if(data.next) {
+    data.next.url = "/edit/" + data.next.id;
+    data.next.thumbPath = config.tracker.thumbsPath + data.next.filename;
+    nextPrevious.next = data.next;
+}
+if(data.previous) {
+    data.previous.thumbPath = config.tracker.thumbsPath + data.previous.filename;
+    data.previous.url = "/edit/" + data.previous.id;
+    nextPrevious.previous = data.previous;
+}
+
+async function deletePhoto(ev) {
+    directMessage({
+        type: "info",
+        value: "Deleting photo...",
+        duration: 10
+    });
+    let detail = ev.detail;
+    let next = "";
+    if(detail.next && detail.next.id) {
+        next = detail.next.id;
+    } else if(detail.previous && detail.previous.id) {
+        next = detail.previous.id;
+    }
+    window.location.replace("/delete/" + detail.id + "?next=" + next);
+}
 
 async function saveAnnotation({ detail }) {
     directMessage({
@@ -89,7 +130,7 @@ async function createThumb({ detail }) {
     let data = await response.json();
 
     clearMessage();
-    
+
     thumb.src = config.tracker.thumbsPath + data.filename + "?d=" + Date.now();
     console.log(thumb.src);
 }
