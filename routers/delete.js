@@ -8,7 +8,7 @@ class DeleteRouter {
         this.photo = photo;
         this.killer = new Killer(config);
 
-        app.get('/:id',  ...chain, async (req, res) => {
+        app.get('/delete/:id',  ...chain, async (req, res) => {
             let id = +req.params.id;  // Cast it to a number so it is harmless.
             let next = +req.query.next;
 

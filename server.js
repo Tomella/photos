@@ -51,7 +51,6 @@ async function run() {
    app.use('/src', express.static('src'));
 
    app.use('/keywords', keywordsRouter.router);
-   app.use('/delete', deleteRouter.router);
 
    app.use(session({
       resave: false,
