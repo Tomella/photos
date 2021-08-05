@@ -22,6 +22,7 @@ class DeleteRouter {
                 try {
                     let response = await this.killer.remove(record.filename);
                     let del = await this.photo.delete(id);
+                    
                     if(next) {
                         res.redirect("/edit/" + next)
                     } else {
