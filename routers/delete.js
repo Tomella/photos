@@ -4,14 +4,11 @@ import Killer from "../lib/killer.js";
 // photosDirectory: "./photos/photos/",
 // thumbsDirectory: "./photos/photos/thumbs/"
 class DeleteRouter {
-    constructor(config, photo) {
+    constructor(config, photo, app, chain = []) {
         this.photo = photo;
-        this.router  = express.Router();
         this.killer = new Killer(config);
-    }
 
-    addRoutes() {
-        this.router.get('/:id',  async (req, res) => {
+        app.get('/:id',  ...chain, async (req, res) => {
             let id = +req.params.id;  // Cast it to a number so it is harmless.
             let next = +req.query.next;
 
@@ -22,7 +19,7 @@ class DeleteRouter {
                 try {
                     let response = await this.killer.remove(record.filename);
                     let del = await this.photo.delete(id);
-                    
+
                     if(next) {
                         res.redirect("/edit/" + next)
                     } else {

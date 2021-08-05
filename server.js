@@ -34,10 +34,6 @@ async function run() {
    const thumb = new Thumb(config.server);
 
    const keywordsRouter = new KeywordsRouter(pool);
-   const deleteRouter = new DeleteRouter(config.server, photo);
-   deleteRouter.router.use(isAdmin);
-   deleteRouter.addRoutes();
-
 
    let queryingService = new QueryingService(config);
    let photos = await photo.all();
@@ -101,6 +97,10 @@ async function run() {
          failureRedirect: '/error'
       })
    );
+
+   // It has to be down here to pick up the authentication.
+   const deleteRouter = new DeleteRouter(config.server, photo, app, [isAdmin]);
+
 
    app.all('/all', async (req, res) => {
       let photos = await photo.all(req.query.startDate, req.query.endDate);
