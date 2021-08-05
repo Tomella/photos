@@ -188,8 +188,7 @@ async function run() {
 }
 
 function isAdmin(req, res, next) {
-   //console.log("is admin")
-   //return next();
+   console.log("is admin", req.isAuthenticated(), req.user);
    if (req.isAuthenticated() && req.user && req.user.admin === "Y") {
       return next();
 
