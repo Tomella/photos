@@ -2,38 +2,16 @@ import Map from "/app/map.js";
 import config from "./config.js";
 import Thumb from "./thumb.js";
 
-class Icon {
-    VIEWING_CLASS = "marker-cluster-viewing"
-
-    constructor(layer) {
-        this.layer = layer;
-    }
-
-    active() {
-        if (this.layer) {
-            let div = this.layer._icon;
-            if (div) div.classList.add(this.VIEWING_CLASS);
-        }
-    }
-
-    inactive() {
-        if (this.layer) {
-            let div = this.layer._icon;
-            if (div) div.classList.remove(this.VIEWING_CLASS);
-        }
-    }
-}
-
 const FETCH_POST = {
     method: 'POST',
     cache: 'no-cache'
 };
 
-
 let form = document.querySelector("ph-photo-form");
+let allKeywords = [];
 form.data = data;
 
-
+prepareKeywords(data);
 
 let phMessages = document.querySelector("ph-messages");
 
@@ -43,6 +21,8 @@ thumb.src = config.tracker.thumbsPath + data.filename;
 
 document.addEventListener("thumbrotate", createThumb);
 document.addEventListener("saveannotation", saveAnnotation);
+document.addEventListener("savekeyword", saveKeyword, true);
+document.addEventListener("removekeyword", removeKeyword);
 document.addEventListener("deletephoto", deletePhoto);
 document.addEventListener("message", message);
 
@@ -56,10 +36,9 @@ let fullSizeImage = document.querySelector("#full-size-image");
 fullSizeImage.addEventListener('load', (event) => {
     console.log('The image has fully loaded');
     thumbsSizeImage.parentElement.removeChild(thumbsSizeImage);
+    fullSizeImage.classList.remove("hide-image");
 });
 fullSizeImage.setAttribute("src", imagePath);
-
-
 
 let mapManager = new Map(config.map);
 mapManager.create();
@@ -117,6 +96,23 @@ async function saveAnnotation({ detail }) {
     });
 }
 
+async function prepareKeywords(data) {
+    let phKeywords = document.querySelector("ph-keywords");
+    let response = await fetch('/keywords/all');
+
+    allKeywords = await response.json();
+    phKeywords.data = reduceKeywords();
+}
+
+function reduceKeywords() {
+    let existing = data.keywords.reduce((acc, item) => {
+        acc[item.name] = item.name;
+        return acc;
+    }, {});
+    return allKeywords.filter(item => !!!existing[item.name]);
+}
+
+
 async function createThumb({ detail }) {
     directMessage({
         type: "info",
@@ -134,6 +130,37 @@ async function createThumb({ detail }) {
     thumb.src = config.tracker.thumbsPath + data.filename + "?d=" + Date.now();
     console.log(thumb.src);
 }
+
+async function saveKeyword({detail}) {
+    directMessage({
+        value: "Adding keyword to photo.",
+        type: "info",
+        duration: 3
+    });
+    await updateKeyword('/keywords/save/' + data.id + '?name=' + detail.value);
+    clearMessage()
+}
+
+async function removeKeyword({detail}) {
+    directMessage({
+        value: "Removing keyword from photo.",
+        type: "info",
+        duration: 3
+    });
+    await updateKeyword('/keywords/unlink/' + data.id + '?name=' + detail.value);
+    clearMessage()
+}
+
+async function updateKeyword(url) {
+    let response = await fetch(url, FETCH_POST);
+    let keywords = await response.json();
+    data.keywords = keywords;
+    
+    let phKeywords = document.querySelector("ph-keywords");
+    phKeywords.data = reduceKeywords();
+    form.refreshKeywords();
+}
+
 
 function directMessage(detail) {
     phMessages.setAttribute('value', detail.value);

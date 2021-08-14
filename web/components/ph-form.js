@@ -3,7 +3,7 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>
         #form-container {
-            width:38em; 
+            width:40em; 
             padding:10px; 
             background-color:white;
             opacity: 0.8;
@@ -72,7 +72,7 @@ template.innerHTML = `
                     for="annotation" style="vertical-align:top">
                     Annotation 
             </label>
-            <textarea name="annotation" rows="3" cols="27"></textarea> 
+            <textarea name="annotation" rows="3" cols="31"></textarea> 
             <button name="save-annotation" style="vertical-align: top;">Save</button>
         </div>
         <div class="form-field">
@@ -89,6 +89,9 @@ template.innerHTML = `
             <button name="rotate-left">Left</button>
             <button name="rotate-180">180 degrees</button>
             <button name="rotate-right">Right</button>
+        </div>
+        <div class="keyword-holder">
+            <ph-my-keywords></ph-my-keywords>
         </div>
     </div>
 `;
@@ -174,6 +177,23 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
         this.$name("annotation").value = data.annotation;
         this.$name("latlong").innerHTML = data.latitude + "° / " + data.longitude + "°";
         this.$name("elevation").innerHTML = data.elevation + "m";
+        this.$("ph-my-keywords").data = data.keywords;
+
+
+        this.addEventListener("keywordclick", (ev) => {
+            console.log("From form Keyword cllicked.....")
+            ev.stopPropagation();
+            const event = new CustomEvent('removekeyword', {
+                bubbles: true,
+                composed: true,
+                detail: ev.detail
+            });
+            this.dispatchEvent(event);
+        });
+    }
+
+    refreshKeywords() {
+        this.$("ph-my-keywords").data = data.keywords;
     }
 
     get data() {

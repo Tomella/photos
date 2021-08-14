@@ -20,6 +20,10 @@
     <script type="module" src="/components/ph-form.js"></script>
     <script type="module" src="/components/ph-previous-next.js"></script>
     <script type="module" src="/components/ph-messages.js"></script>
+    <script type="module" src="/components/ph-keywords.js"></script>
+    <script type="module" src="/components/ph-my-keywords.js"></script>
+    <script type="module" src="/components/ph-keyword.js"></script>
+    <script type="module" src="/components/ph-keyword-add.js"></script>
 </head>
 
 <body>
@@ -30,12 +34,15 @@
         </div>
     </div>
     <div id="mapEdit"></div>
-    <ph-photo-form></ph-photo-form>
+    <div class="ph-photo-form-container">
+        <ph-photo-form></ph-photo-form>
+        <ph-keywords></ph-keywords>
+    </div>
     <ph-messages id="messages" type="info" value="Annotate image, generate thumbnail" duration="12"></ph-messages>
 
     <img id="thumbs-size-image" style="width:100%"></img>
     <a target="photos-photo" id="full-size-image-link">
-        <img id="full-size-image" style="width:100%"></img>
+        <img id="full-size-image" class="hide-image" style="width:100%"></img>
     </a>
     <ph-previous-next></ph-previous-next>
 
