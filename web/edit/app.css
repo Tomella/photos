@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 #mapEdit {
     padding: 0px;
     position: fixed;
@@ -31,6 +35,7 @@
 }
 
 #thumb-link {
+    display:flex;
     padding: 2px;
     padding-right:0;
     position: fixed;
