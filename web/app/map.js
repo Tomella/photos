@@ -32,4 +32,12 @@ export default class Map {
       layer.addTo(this.map);
       return layer;
    }
+
+   addPoint(point, pan = false) {
+      let marker = L.marker(point).addTo(this.map);
+      if(pan) {
+         this.map.setView(point);
+      }
+      return marker;
+   }
 }
