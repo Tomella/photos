@@ -7,6 +7,9 @@ const FETCH_POST = {
     method: 'POST',
     cache: 'no-cache'
 };
+let keywords = [];
+
+
 
 prepareKeywords();
 let messages = new Message(document.querySelector("ph-messages"));
@@ -61,11 +64,11 @@ async function prepareKeywords() {
     let phKeywords = document.querySelector("ph-keywords");
     let response = await fetch('/keywords/all');
 
-    let keywords = await response.json();
-    phKeywords.data = reduceKeywords(keywords);
+    keywords = await response.json();
+    phKeywords.data = reduceKeywords();
 }
 
-function reduceKeywords(keywords) {
+function reduceKeywords() {
     let existing = data.keywords.reduce((acc, item) => {
         acc[item.name] = item.name;
         return acc;
@@ -91,7 +94,7 @@ async function updateKeyword(url) {
     data.keywords = keywords;
 
     let phKeywords = document.querySelector("ph-keywords");
-    phKeywords.data = reduceKeywords(keywords);
+    phKeywords.data = reduceKeywords();
     form.refreshKeywords();
 }
 

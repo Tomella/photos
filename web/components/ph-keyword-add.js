@@ -63,16 +63,21 @@ customElements.define('ph-keyword-add', class KeywordAdd extends HTMLElement {
 
         inp.addEventListener("keyup", (ev) => {
             console.log("EVV:", ev, inp.value);
-            const eventAwesome = new CustomEvent('keywordchange', {
-                bubbles: true,
-                detail: { value: inp.value }
-            });
-            this.dispatchEvent(eventAwesome)
+            if (ev.key === 'Enter') {
+                clicked(ev);
+            } else {
+                const evt = new CustomEvent('keywordchange', {
+                    bubbles: true,
+                    detail: { value: inp.value }
+                });
+                this.dispatchEvent(evt)
+            }
         });
-
         
         let btn = this.$("button");
-        btn.addEventListener("click", (ev) => {
+        btn.addEventListener("click", clicked);
+
+        function clicked(ev) {
             console.log("CLICK EVV:", ev, inp.value);
             let val = inp.value;
             if(val) {
@@ -83,7 +88,7 @@ customElements.define('ph-keyword-add', class KeywordAdd extends HTMLElement {
                 });
                 this.dispatchEvent(event);
             }
-        });
+        }
     }
     
     _value(a, b, c) {
