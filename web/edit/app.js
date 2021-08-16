@@ -8,10 +8,6 @@ const FETCH_POST = {
     cache: 'no-cache'
 };
 
-let form = document.querySelector("ph-photo-form");
-let allKeywords = [];
-form.data = data;
-
 prepareKeywords();
 let messages = new Message(document.querySelector("ph-messages"));
 
@@ -19,6 +15,9 @@ prepareImage(prepareThumb()); // Image removes thumb on load.
 prepareMap();
 prepareNextPrevious();
 addListeners();
+
+let form = document.querySelector("ph-photo-form");
+form.data = data;
 
 async function deletePhoto(ev) {
     postMessage("info", "Deleting photo...", 10);
@@ -44,23 +43,6 @@ async function saveAnnotation({ detail }) {
     postMessage("success", "Annotation updated.", 6);
 }
 
-async function prepareKeywords() {
-    let phKeywords = document.querySelector("ph-keywords");
-    let response = await fetch('/keywords/all');
-
-    allKeywords = await response.json();
-    phKeywords.data = reduceKeywords();
-}
-
-function reduceKeywords() {
-    let existing = data.keywords.reduce((acc, item) => {
-        acc[item.name] = item.name;
-        return acc;
-    }, {});
-    return allKeywords.filter(item => !!!existing[item.name]);
-}
-
-
 async function createThumb({ detail }) {
     postMessage("info", "Generating new thumbnail...", 20);
     let response = await fetch(
@@ -73,6 +55,22 @@ async function createThumb({ detail }) {
 
     thumb.src = config.tracker.thumbsPath + data.filename + "?d=" + Date.now();
     console.log(thumb.src);
+}
+
+async function prepareKeywords() {
+    let phKeywords = document.querySelector("ph-keywords");
+    let response = await fetch('/keywords/all');
+
+    let keywords = await response.json();
+    phKeywords.data = reduceKeywords(keywords);
+}
+
+function reduceKeywords(keywords) {
+    let existing = data.keywords.reduce((acc, item) => {
+        acc[item.name] = item.name;
+        return acc;
+    }, {});
+    return keywords.filter(item => !!!existing[item.name]);
 }
 
 async function saveKeyword(ev) {
@@ -93,7 +91,7 @@ async function updateKeyword(url) {
     data.keywords = keywords;
 
     let phKeywords = document.querySelector("ph-keywords");
-    phKeywords.data = reduceKeywords();
+    phKeywords.data = reduceKeywords(keywords);
     form.refreshKeywords();
 }
 
