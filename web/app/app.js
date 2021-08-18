@@ -73,7 +73,7 @@ document.addEventListener("keyup", function(evt) {
     }
 });
 
-if(!user.name) {
+if(user.name) {
     console.log("User fetched", user);
     document.dispatchEvent(new CustomEvent('loggedin', { detail: user}));
 
