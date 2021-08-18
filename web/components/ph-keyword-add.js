@@ -61,6 +61,19 @@ customElements.define('ph-keyword-add', class KeywordAdd extends HTMLElement {
         root.appendChild(template.content.cloneNode(true));
         let inp = this.$("input");
 
+        let clicked = (ev) => {
+            console.log("CLICK EVV:", ev, inp.value);
+            let val = inp.value;
+            if(val) {
+                const evt = new CustomEvent('savekeyword', {
+                    bubbles: true,
+                    composed: true,
+                    detail: { value: inp.value }
+                });
+                this.dispatchEvent(evt);
+            }
+        }
+
         inp.addEventListener("keyup", (ev) => {
             console.log("EVV:", ev, inp.value);
             if (ev.key === 'Enter') {
@@ -77,18 +90,6 @@ customElements.define('ph-keyword-add', class KeywordAdd extends HTMLElement {
         let btn = this.$("button");
         btn.addEventListener("click", clicked);
 
-        function clicked(ev) {
-            console.log("CLICK EVV:", ev, inp.value);
-            let val = inp.value;
-            if(val) {
-                const event = new CustomEvent('savekeyword', {
-                    bubbles: true,
-                    composed: true,
-                    detail: { value: inp.value }
-                });
-                this.dispatchEvent(event);
-            }
-        }
     }
     
     _value(a, b, c) {

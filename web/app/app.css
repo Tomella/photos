@@ -61,3 +61,10 @@ body {
   font-weight: bold;
   font-size: 120%;
 }
+
+#add-image {
+  position: fixed;
+  bottom: 0px;
+  left: 300px;
+  z-index: 100;
+}

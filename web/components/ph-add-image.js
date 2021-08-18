@@ -1,62 +1,60 @@
 
 const template = document.createElement('template');
 
-template.innerHTML = `
-<style>
-.ph-messages {
-    position: absolute;
-    left:0;
-    opacity: 0.8;
-    text-align: center;
-    font-size: 110%;
-    padding:5px;
+template.innerHTML = `<style>
+input {
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px -3px 2px 4px;
+    cursor: pointer;
+    border-radius: 10px 0 0  10px;
+}
+
+button {
+    background-color: white;
     border: 2px solid rgb(0,0,0,0.2);
-    background-clip: padding-box;
-    border-radius: 4px;
-    transition: width 2s;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 0;
+    font-weight: bold;
+    color: black;
+    padding: 10px 14px 10px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin:  4px 2px 0 0;
+    cursor: pointer;
+    z-index: 2;
 }
 
-.ph-messages-transition {
-    width:0;
+.hide {
+    display: none;
 }
 
-.ph-messages-hide {
-    width:0;
-    padding:0;
-    border:0;
+iframe {
+    z-index: 1;
+    background-color: white;
+    border-radius: 0 10px 10px 10px;
+    border: 2px solid rgb(0,0,0,0.2);
+    padding: 0;
 }
 
-.ph-messages-error > .ph-messages-type::before {
-    content: "❌";
-}
-
-.ph-messages-info > .ph-messages-type::before {
-    content: "💭";
-}
-
-.ph-messages-warn > .ph-messages-type::before {
-    content: "❕";
-}
-
-.ph-messages-warn {
-    background-color: LightGoldenRodYellow;
-}
-.ph-messages-error {
-    background-color: lightpink;
-}
-.ph-messages-info {
-    background-color: lightblue;
+.container {
+    z-index: 1;
+    position: relative;
 }
 </style>
-<span class="ph-messages">
-    <span class="ph-messages-type"></span>
-    <span class="ph-messages-text"></span>
-</span>
+<div class="container">
+    <div class="narrow" title="Click to add photos">
+        <button class="button">Add Photos</button>
+    </div>
+    <iframe class="hide" width="600" height="350"></iframe>
+</div>
 `;
-let timeout = null;
 
 customElements.define('ph-add-image', class AddImage extends HTMLElement {
-    static get observedAttributes() { return ['value', 'type', 'duration']; }
 
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector)
@@ -72,49 +70,34 @@ customElements.define('ph-add-image', class AddImage extends HTMLElement {
         // Normally you are adding the template
         const root = this.attachShadow({ mode: 'open' })
         root.appendChild(template.content.cloneNode(true));
-    }
 
-    _value() {
-        let value = this.getAttribute("value");
-        console.log("value here:", value);
-        this.$(".ph-messages-text").innerHTML = value;
-    }
 
-    _type() {
-        let type = this.getAttribute("type");
-        console.log("type here:", type);
-        this._setClass(type);
-    }
-
-    _duration() {
-        let duration = this.getAttribute("duration");
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            this._clear();
-        }, (+duration) * 1000);
-    }
-
-    _clear() {
-        timeout = null;
-        this.setAttribute("type", "");
-        this.setAttribute("value", "");
-        this._setClass("hide");
-    }
-
-    _setClass(name) {
-        let type = this.$(".ph-messages");
-        type.classList.remove("ph-messages-hide");
-        type.classList.remove("ph-messages-warn");
-        type.classList.remove("ph-messages-info");
-        type.classList.remove("ph-messages-error");
-        if(name) {
-            type.classList.add("ph-messages-" + name);
-        } else {
-            type.classList.add("ph-messages-hide");
-        }
+        this._show = false;
+        this.$("button").addEventListener("click", event => {
+            this.show = !this._show;
+        });
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
         this["_" + attr]();
+    }
+
+    set show(val) {
+        this._show = val;
+        let iframe = this.$("iframe");
+        if(val) {
+            if(!iframe.src) {
+                iframe.src = "/add";
+            }
+
+            iframe.classList.remove("hide");
+        } else {
+            iframe.classList.add("hide");
+        }
+
+    }
+    
+    get show() {
+        return this._show;
     }
 });

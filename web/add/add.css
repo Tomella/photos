@@ -1,0 +1,54 @@
+.drop-container {
+    position: fixed;
+    top: 60px;
+    bottom: 90px;
+    left: 40px;
+    right: 40px;
+    border:dashed thick gray;
+}
+
+.drop-container h2 {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.aster {
+    color:tomato;
+    font-weight: bold;
+    font-size: 320%;
+}
+
+.drop-tales {
+    position: fixed;
+    bottom: 30px;
+    left: 45px;
+}
+
+button {    
+    background-color: white;
+    border: 2px solid rgb(0,0,0,0.2);
+    border-radius: 10px 10px;
+    font-weight: bold;
+    color: black;
+    padding: 10px 14px 10px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin:  4px 2px 0 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.btns {
+    position: fixed;
+    right: 40px;
+    bottom: 30px;
+}
+
+button:disabled {
+    color: gray;
+}
+
+.hide {
+    display: none;
+}

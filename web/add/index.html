@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <title>Add Photos</title>
+
+    <link rel="stylesheet" href="add.css" />
+    <script type="module" src="../components/ph-messages.js"></script>
+</head>
+
+<body>
+    <div class="drop-container">
+        <h2>Drop Photos Here</h2>
+    </div>
+
+    <div class="drop-tales">
+        <span class="aster">.</span>&nbsp;Photos need to be JPG and have EXIF data otherwise they are ignored.
+    </div>
+    <span class="btns">
+        <button class="clear-btn hide">Clear</button>
+        <button class="submit-btn" disabled="disabled">Upload Photos</button>
+
+    </span>
+    <script type="module" src="add.js"></script>    
+    <ph-messages id="messages" type="info" value="Drag and drop JPG photos onto the drop zone." duration="12">
+    </ph-messages>
+</body>
+
+</html>

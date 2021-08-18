@@ -13,7 +13,7 @@ import ExtentRequest from "./src/quadtree/extentrequest.js";
 import QueryingService from "./src/photos/queryingservice.js";
 
 import KeywordsRouter from "./routers/keywords.js";
-import DeleteRouter from "./routers/delete.js";
+import PhotoRouter from "./routers/photo.js";
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -98,7 +98,7 @@ async function run() {
    );
 
    // It has to be down here to pick up the authentication.
-   const deleteRouter = new DeleteRouter(config.server, photo, app, [isAdmin]);
+   const photoRouter = new PhotoRouter(config.server, photo, app, [isAdmin]);
 
 
    app.all('/all', async (req, res) => {
@@ -145,17 +145,31 @@ async function run() {
    });
 
    app.all('/edit/:id', isAdmin, async (req, res) => {
-      let data = await photo.findByIdWithAdjacent(req.params.id);
-
-      ejs.renderFile(__dirname + "/views/edit.ejs", { data: JSON.stringify(data) }, {}, function (err, str) {
-         if (err) {
-            console.log(err)
-            res.writeHead(503, 'System error');
-            res.end()
-         } else {
-            res.status(200).send(str);
+      let id = req.params.id;
+      let data = await photo.findByIdWithAdjacent(id);
+      if(!data) {
+         data = await photo.findNext(id);
+         if(!data) {
+            data = await photo.findPrevious(id);
          }
-      });
+
+         if(!data) {
+            res.redirect('/');
+         } else {
+            id = data.id;
+            res.redirect('/edit/' + id);
+         }
+      } else {
+         ejs.renderFile(__dirname + "/views/edit.ejs", { data: JSON.stringify(data) }, {}, function (err, str) {
+            if (err) {
+               console.log(err)
+               res.writeHead(503, 'System error');
+               res.end()
+            } else {
+               res.status(200).send(str);
+            }
+         });
+      }
    });
 
    // Direction can be right, left, 180 or original. All are relative to the original photo.

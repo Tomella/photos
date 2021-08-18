@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
     <title>Photos</title>
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
@@ -41,6 +42,7 @@
     <script type="module" src="./components/ph-dialog.js"></script>
     <script type="module" src="./components/ph-thumb-link.js"></script>
     <script type="module" src="./components/ph-messages.js"></script>
+    <script type="module" src="./components/ph-add-image.js"></script>
 </head>
 
 <body>
@@ -63,6 +65,8 @@
             </a>
         </div>
     </div>
+    <ph-add-image class="hide" id="add-image"></ph-add-image>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin="anonymous"></script>

@@ -2,6 +2,7 @@ import Map from "./map.js";
 import config from "./config.js";
 import Tracker from "./tracker.js";
 import user from "/user.js";
+import AddImageCtl from "/lib/addimagectl.js";
 
 class Icon {
     VIEWING_CLASS = "marker-cluster-viewing"
@@ -72,10 +73,12 @@ document.addEventListener("keyup", function(evt) {
     }
 });
 
-
-if(user.name) {
+if(!user.name) {
     console.log("User fetched", user);
     document.dispatchEvent(new CustomEvent('loggedin', { detail: user}));
+
+    let addImageCtl = new AddImageCtl(document.querySelector("ph-add-image"));
+    addImageCtl.show();
 }
 
 
