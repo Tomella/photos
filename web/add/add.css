@@ -15,12 +15,11 @@
 .aster {
     color:tomato;
     font-weight: bold;
-    font-size: 320%;
 }
 
 .drop-tales {
     position: fixed;
-    bottom: 30px;
+    bottom: 10px;
     left: 45px;
 }
 

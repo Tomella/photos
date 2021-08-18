@@ -50,7 +50,7 @@ iframe {
     <div class="narrow" title="Click to add photos">
         <button class="button">Add Photos</button>
     </div>
-    <iframe class="hide" width="600" height="350"></iframe>
+    <iframe class="hide" width="650" height="350"></iframe>
 </div>
 `;
 
