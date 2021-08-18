@@ -49,35 +49,36 @@ function message({ value, type, duration = 7 }) {
 
 function attachHandlers() {
     clearBtn.addEventListener("click", (ev) => {
-        files = [];
-        rejected = 0;
-        names = {};
         message({
             value: "Removed all photos from list.",
             type: "info"
         });
-
-
-        clearBtn.classList.add("hide");
-        submitBtn.setAttribute("disabled", "disabled");
+        clearList();
     });
 
     submitBtn.addEventListener("click", async (ev) => {
         message({
             value: "Uploading files....",
             type: "info",
-            duration: files.length + 5
+            duration: files.length * 2 + 5
         });
         await upload(files);
         message({
-            value: "Uploaded files",
+            value: "Files uploaded and scheduled for processing.",
             type: "success",
-            duration: files.length + 5
+            duration: 7
         });
 
     });
 }
 
+function clearList() {
+    files = [];
+    rejected = 0;
+    names = {};
+    clearBtn.classList.add("hide");
+    submitBtn.setAttribute("disabled", "disabled");
+}
 
 async function upload(files) {
     //FILL FormData WITH FILE DETAILS.
@@ -93,6 +94,7 @@ async function upload(files) {
         method: 'POST',
         cache: 'no-cache'
     });
+    clearList();
     let data = await response.json();
     return data
 }
