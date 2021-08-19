@@ -35,7 +35,7 @@ template.innerHTML = `
     display: none;
 }
 
-a:hover {
+a, ph-previous, ph-next, img {
     cursor:pointer;  
 }
 </style>
