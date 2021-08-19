@@ -34,6 +34,10 @@ template.innerHTML = `
 .hide {
     display: none;
 }
+
+a:hover {
+    cursor:pointer;  
+}
 </style>
 <div class="ph-previous-next">
     <a class="ph-previous hide" title="Edit previous photo"><button class="thumbBtn"><img class="previous-image"></img>&lt;&lt;</button></a>
