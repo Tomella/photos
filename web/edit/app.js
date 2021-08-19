@@ -8,7 +8,7 @@ const FETCH_POST = {
     cache: 'no-cache'
 };
 let keywords = [];
-
+let thumb = null;
 
 
 prepareKeywords();
@@ -121,7 +121,7 @@ function addListeners() {
 
 function prepareThumb() {
     let thumbImage = document.querySelector("#thumb-link")
-    let thumb = new Thumb(thumbImage);
+    thumb = new Thumb(thumbImage);
     thumb.src = config.tracker.thumbsPath + data.filename;
     let thumbsSizeImage = document.querySelector("#thumbs-size-image");
     thumbsSizeImage.setAttribute("src", thumb.src);
