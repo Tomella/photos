@@ -10,10 +10,7 @@ const EXTENSIONS = ["image/jpeg"];
 const clearBtn = document.querySelector(".clear-btn");
 const submitBtn = document.querySelector(".submit-btn");
 
-
-
 attachHandlers();
-
 
 let fileDrop = new FileDrop(dropContainer, handler);
 function handler(file) {
@@ -33,10 +30,8 @@ function handler(file) {
         type: "info"
     })
 
-
     console.log(files.length);
 }
-
 
 let phMessages = document.querySelector("ph-messages");
 
@@ -68,7 +63,6 @@ function attachHandlers() {
             type: "success",
             duration: 7
         });
-
     });
 }
 
@@ -87,7 +81,6 @@ async function upload(files) {
     files.forEach(file => {
         postData.append("file", file);
     });
-
 
     let response = await fetch("/upload", {
         body: postData,

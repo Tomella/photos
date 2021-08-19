@@ -77,13 +77,13 @@ function reduceKeywords() {
 }
 
 async function saveKeyword(ev) {
-    postMessage("Adding keyword to photo.", "info", 3);
+    postMessage("info", "Adding keyword to photo.", 3);
     await updateKeyword('/keywords/save/' + data.id + '?name=' + ev.detail.value);
     clearMessage()
 }
 
 async function removeKeyword({ detail }) {
-    postMessage("Removing keyword from photo.", "info", 3);
+    postMessage("info", "Removing keyword from photo.", 3);
     await updateKeyword('/keywords/unlink/' + data.id + '?name=' + detail.value);
     clearMessage()
 }
@@ -98,7 +98,7 @@ async function updateKeyword(url) {
     form.refreshKeywords();
 }
 
-function postMessage(value, type, duration) {
+function postMessage(type, value, duration) {
     messages.post({ value, type, duration });
 }
 
