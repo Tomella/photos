@@ -22,7 +22,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const FacebookStrategy = passportFacebook.Strategy;
-
 const port = 3000;
 
 run().then(() => console.log("Running"));
@@ -114,6 +113,8 @@ async function run() {
       let response = {name: null, admin: "N"};
       if(req.user) {
          response =  { name: req.user.name, admin: req.user.admin};
+      } else if (config.isLocal.on) {
+         response = config.isLocal.user;
       }
       let str = "export default " + JSON.stringify(response);
       res.setHeader('Content-Type', "application/javascript; charset=UTF-8");
@@ -201,18 +202,9 @@ async function run() {
 }
 
 function isAdmin(req, res, next) {
-   //return next();
-   console.log("is admin", req.isAuthenticated(), req.user);
-   if (req.isAuthenticated() && req.user && req.user.admin === "Y") {
+   if(config.isLocal.on || (req.isAuthenticated() && req.user && req.user.admin === "Y")) {
       return next();
-
    }
-   res.redirect('/');
-}
-
-function isLoggedIn(req, res, next) {
-   if (req.isAuthenticated())
-      return next();
    res.redirect('/');
 }
 
