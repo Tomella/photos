@@ -12,7 +12,6 @@ import DevSecurity from "./lib/dev-security.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
 import ExtentRequest from "./src/quadtree/extentrequest.js";
-import QueryingService from "./src/photos/queryingservice.js";
 
 import KeywordsRouter from "./routers/keywords.js";
 import PhotoRouter from "./routers/photo.js";
@@ -44,9 +43,7 @@ async function run() {
 
    const keywordsRouter = new KeywordsRouter(pool);
 
-   let queryingService = new QueryingService(config);
    let photos = await photo.all();
-   queryingService.load(pointsToJson(photos));
 
    //var httpProxy = require('http-proxy');
    let app = express();
