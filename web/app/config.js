@@ -4,9 +4,9 @@ export default {
       showLatLon: true,
       options: {
          center: [-34.454, 138.81],
-         minZoom: 5,
+         minZoom: 4,
          zoom: 12,
-         maxZoom: 15
+         maxZoom: 17
       },
       layers: [
          {

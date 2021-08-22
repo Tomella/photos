@@ -7,6 +7,8 @@ import passportFacebook from 'passport-facebook';
 import session from "express-session";
 
 import Photo from "./lib/photo.js";
+import Security from "./lib/security.js";
+import DevSecurity from "./lib/dev-security.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
 import ExtentRequest from "./src/quadtree/extentrequest.js";
@@ -20,6 +22,14 @@ import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+let security = null;
+if(config.isLocal.on) {
+   security = new DevSecurity(config);
+} else {
+   security = new Security(config);
+}
+
 
 const FacebookStrategy = passportFacebook.Strategy;
 const port = 3000;
@@ -110,12 +120,7 @@ async function run() {
    });
 
    app.all('/user.js', async (req, res) => {
-      let response = {name: null, admin: "N"};
-      if(req.user) {
-         response =  { name: req.user.name, admin: req.user.admin};
-      } else if (config.isLocal.on) {
-         response = config.isLocal.user;
-      }
+      let response = security.user(req);
       let str = "export default " + JSON.stringify(response);
       res.setHeader('Content-Type', "application/javascript; charset=UTF-8");
       res.send(str);
@@ -202,7 +207,7 @@ async function run() {
 }
 
 function isAdmin(req, res, next) {
-   if(config.isLocal.on || (req.isAuthenticated() && req.user && req.user.admin === "Y")) {
+   if(security.isAdmin(req)) {
       return next();
    }
    res.redirect('/');
