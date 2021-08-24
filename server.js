@@ -15,6 +15,7 @@ import ExtentRequest from "./src/quadtree/extentrequest.js";
 
 import KeywordsRouter from "./routers/keywords.js";
 import PhotoRouter from "./routers/photo.js";
+import AlbumRouter from "./routers/album.js";
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -31,7 +32,7 @@ if(config.isLocal.on) {
 
 
 const FacebookStrategy = passportFacebook.Strategy;
-const port = 3000;
+const port = config.port;
 
 run().then(() => console.log("Running"));
 
@@ -42,6 +43,7 @@ async function run() {
    const thumb = new Thumb(config.server);
 
    const keywordsRouter = new KeywordsRouter(pool);
+   const albumRouter = new AlbumRouter(pool);
 
    let photos = await photo.all();
 
@@ -57,6 +59,7 @@ async function run() {
    app.use('/src', express.static('src'));
 
    app.use('/keywords', keywordsRouter.router);
+   app.use('/albumService', albumRouter.router);
 
    app.use(session({
       resave: false,

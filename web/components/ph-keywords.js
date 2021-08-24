@@ -67,7 +67,7 @@ customElements.define('ph-keywords', class Keywords extends HTMLElement {
 
 
         this.addEventListener("keywordclick", (ev) => {
-            console.log("A Keyword cllicked.....")
+            console.log("A Keyword clicked.....")
             ev.stopPropagation();
             const event = new CustomEvent('savekeyword', {
                 bubbles: true,

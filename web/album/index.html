@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <title>Photo Album</title>
+    <link rel="icon" type="image/png" href="../icon.png">
+
+    <script type="module" src="../components/ph-keyword.js"></script>
+    <script type="module" src="./component/al-image-container.js"></script>
+    <script type="module" src="./component/al-image.js"></script>
+    <link rel="stylesheet" href="album.css" />
+</head>
+
+<body>
+    <h1 id="albumtitle"></h1>
+    <h4>Photo Album</h4>
+    <div id="selectalbum">
+        <button class="selectlabel">Select Album...</button>
+    </div>
+    <div id="keywordcontainer">
+        View Album
+        <span class="filtercontainer">
+            <input class="filterinput" type="text" placeholder="Filter..."></input>
+            <button disabled class="selectclose">X</button>
+        </span>
+        <div class="keywords">
+            Loading album names...
+        </div>
+    </div>
+    <al-image-container></al-image-container>
+</body>
+<script type="module" src="album.js"></script>
+
+</html>
