@@ -3,22 +3,44 @@ export default class KeywordManager {
         this.config = config;
 
         this.container = document.querySelector(config.container);
-        this.closeButton = this.container.querySelector(".selectclose");
+        this.closeButton = this.container.querySelector(".select-close");
         this.heading = document.querySelector(config.heading);
+        this.filter = document.querySelector(config.filter);
 
-        this.heading.onclick = ev => {
-            this.container.classList.add('show');
-            this.closeButton.disabled = false;
-            this.heading.disabled = "disabled";
-        };
-
-        this.closeButton.onclick = ev => {
-            this.container.classList.remove('show');
-            this.closeButton.disabled = "disabled";
-            this.heading.disabled = false;
-        }
-
+        this.heading.onclick = ev => this.show();
+        this.closeButton.onclick = ev => this.hide();
+        this.filter.addEventListener("keyup", (ev) => this._filter(ev));
         this.fetch();
+    }
+
+    _filter(ev) {
+        console.log("EVV:", ev, this.filter.value);
+        let filter =  this.filter.value;
+        if (ev.key !== 'Enter') {
+            let els = document.querySelector(this.config.keywords).querySelectorAll("ph-keyword");
+            let up = filter.toUpperCase();
+            els.forEach(el => {
+                let show = filter.length == 0 || el.innerText.toUpperCase().indexOf(up) > -1;
+                let classList = el.classList;
+                if(show){
+                    classList.remove("hide");
+                } else {
+                    classList.add("hide");
+                }
+            });
+        }
+    }
+
+    show() {
+        this.container.classList.add('show');
+        this.closeButton.disabled = false;
+        this.heading.disabled = "disabled";
+    }
+
+    hide() {
+        this.container.classList.remove('show');
+        this.closeButton.disabled = "disabled";
+        this.heading.disabled = false;
     }
 
     async fetch() {

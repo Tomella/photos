@@ -30,7 +30,7 @@ h4 {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
-#selectalbum {
+#select-album {
     white-space: nowrap;
     position: fixed;
     top: 15px;
@@ -38,35 +38,35 @@ h4 {
     z-index:2;
 }
 
-#keywordcontainer {
+#keyword-container {
     position: fixed;
-    top: 15px;
-    right: -35px;
+    right: 15px;
+    top: -35px;
     overflow: hidden;
     padding: 10px;
-    width: 0;
-    height: 80%;
+    width: 70%;
+    height: 0;
     background-color: white;
     border: 2px solid lightgrey;
     border-radius: 5px;
     z-index:3;
 }
 
-#keywordcontainer.show {
-    right: 15px;
-    width: 70%;
-    transition: width 1s;
+#keyword-container.show {
+    top: 15px;
+    height: 80%;
+    transition: height 1s;
 }
 
 
-.filtercontainer {
+.filter-container {
     float: right;
     text-align: right;
     width: 200px;
     white-space: nowrap;
 }
 
-.filterinput {
+.filter-input {
     color: black;
     padding: 5px 10px;
     text-decoration: none;
@@ -76,11 +76,11 @@ h4 {
     border-radius: 10px ;
 }
 
-.filterinput:focus {
+.filter-input:focus {
     outline:none;
 }
 
-.selectclose {
+.select-close {
     font-size: large;
     padding: 2px 5px;
     background-color: Transparent;
@@ -89,7 +89,7 @@ h4 {
     border: 1px;
 }
 
-.selectlabel {
+.select-label {
     padding-bottom: 30px;
     color: black; 
     border: none;
@@ -102,4 +102,8 @@ h4 {
 .keywords {
     margin-top: 25px;
     font-size: smaller;
+}
+
+.hide {
+    display: none;
 }

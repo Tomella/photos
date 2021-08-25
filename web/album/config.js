@@ -3,9 +3,10 @@ export default {
     thumbsPath: "https://photos.geospeedster.com/photos/thumbs/",
 
     keyword: {
-        heading: "#selectalbum",
-        container: "#keywordcontainer",
+        heading: "#select-album",
+        container: "#keyword-container",
         keywords: ".keywords",
-        redirect: "/album/?keyword="
+        redirect: "/album/?keyword=",
+        filter: ".filter-input"
     }
 }

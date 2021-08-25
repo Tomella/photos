@@ -6,7 +6,7 @@ let intv = null;
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const entry = urlSearchParams.entries().next().value;
-document.querySelector("#albumtitle").innerHTML = entry[1]; 
+document.querySelector("#album-title").innerHTML = entry[1]; 
 
 const keyword = new Keyword(config.keyword);
 
@@ -19,7 +19,6 @@ window.onload = async (el) => {
         image.setAttribute("src", config.thumbsPath + feature.filename);
         container.appendChild(image);
     });
-
     window.onresize = update;
 }
 

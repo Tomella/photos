@@ -4,10 +4,10 @@ template.innerHTML = `
 <style>
     
 </style>
-<div id="selectalbum" onclick="document.querySelector('#keywordcontainer').classList.add('show')">
-    <div class="selectlabel">Select Album...</div>
+<div id="select-album" onclick="document.querySelector('#keywordcontainer').classList.add('show')">
+    <div class="select-label">Select Album...</div>
 </div>
-<div id="keywordcontainer">View Album</div>
+<div id="keyword-container">View Album</div>
 `;
 
 customElements.define('al-image', class AlbumImage extends HTMLElement {
