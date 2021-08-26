@@ -17,6 +17,9 @@ window.onload = async (el) => {
         let image = document.createElement("al-image");
         image.onload = counter;
         image.setAttribute("src", config.thumbsPath + feature.filename);
+        if(feature.annotation) {
+            image.setAttribute("caption", feature.annotation);
+        }
         container.appendChild(image);
     });
     window.onresize = update;

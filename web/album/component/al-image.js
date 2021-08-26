@@ -17,18 +17,26 @@ template.innerHTML = `
     width: 100%;
     height: auto;
 }
+.caption {
+    font-family: "URW Chancery L", cursive;
+    font-size: 90%;
+}
+.hide {
+    display: none;
+}
 </style>
 <div class="box">
     <div class="box-img">
         <a>
             <img>
         </a>
+        <div class="caption hide"></div>
     </div>
 </div>
 `;
 
 customElements.define('al-image', class AlbumImage extends HTMLElement {
-    static get observedAttributes() { return ['src', 'href', 'title']; }
+    static get observedAttributes() { return ['src', 'href', 'title', 'caption']; }
 
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector);
@@ -59,6 +67,18 @@ customElements.define('al-image', class AlbumImage extends HTMLElement {
     _title() {
         let title = this.getAttribute("title");
         this.$("div").setAttribute("title", title);
+    }
+
+    _caption() {
+        let caption = this.getAttribute("caption");
+        let element = this.$(".caption");
+        
+        element.innerHTML = caption;
+        if(caption) {
+            element.classList.remove("hide");
+        } else {
+            element.classList.add("hide");
+        }
     }
 
     get width() {
