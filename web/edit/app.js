@@ -113,7 +113,7 @@ function message(event) {
 function addListeners() {
     document.addEventListener("thumbrotate", createThumb);
     document.addEventListener("saveannotation", saveAnnotation);
-    document.addEventListener("savekeyword", saveKeyword, true);
+    document.addEventListener("savekeyword", saveKeyword);
     document.addEventListener("removekeyword", removeKeyword);
     document.addEventListener("deletephoto", deletePhoto);
     document.addEventListener("message", message);

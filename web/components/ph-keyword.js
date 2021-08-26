@@ -20,7 +20,7 @@ template.innerHTML = `
   `;
 
 customElements.define('ph-keyword', class Keyword extends HTMLElement {
-    static get observedAttributes() { return ['title']; }
+    static get observedAttributes() { return ['title', 'key']; }
 
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector)
@@ -37,7 +37,7 @@ customElements.define('ph-keyword', class Keyword extends HTMLElement {
             const event = new CustomEvent('keywordclick', {
                 bubbles: true,
                 composed: true,
-                detail: { value: this.innerText }
+                detail: { value: this._value ? this._value : this.innerText }
             });
             this.dispatchEvent(event);
         });
@@ -45,6 +45,10 @@ customElements.define('ph-keyword', class Keyword extends HTMLElement {
 
     _title(a, b, c) {
         console.log("Val = ", a, b, c)
+    }
+
+    set key(val) {
+        this._value = val;
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {

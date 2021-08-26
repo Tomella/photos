@@ -59,8 +59,9 @@ export default class KeywordManager {
         data.forEach(datum => {
             let el = document.createElement("ph-keyword");
             el.title = "Click to add keyword to current photo."
-            el.innerText = datum.name;
+            el.innerText = datum.name + " (" + datum.count + ")";
             el.value = datum.id;
+            el.key = datum.name;
             target.appendChild(el);
         });
     }
