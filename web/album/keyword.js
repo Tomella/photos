@@ -47,6 +47,8 @@ export default class KeywordManager {
         let target = document.querySelector(this.config.keywords);
         let response = await fetch('/keywords/all');
         let data = await response.json();
+        let fmt = Intl.NumberFormat("EN-AU");
+
         target.innerHTML = "";
 
         target.addEventListener("keywordclick", (ev) => {
@@ -59,7 +61,7 @@ export default class KeywordManager {
         data.forEach(datum => {
             let el = document.createElement("ph-keyword");
             el.title = "Click to add keyword to current photo."
-            el.innerText = datum.name + " (" + datum.count + ")";
+            el.innerText = datum.name + " (" + fmt.format(datum.count) + ")";
             el.value = datum.id;
             el.key = datum.name;
             target.appendChild(el);
