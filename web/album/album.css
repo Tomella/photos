@@ -107,3 +107,12 @@ h4 {
 .hide {
     display: none;
 }
+
+al-expand-image {
+    left:100px;
+    right:100px;
+    top:100px;
+    bottom:100px;
+    position:fixed;
+    background-color: red;
+}
