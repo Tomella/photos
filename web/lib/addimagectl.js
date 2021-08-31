@@ -4,10 +4,10 @@ export default class AddImageCtl {
     }
 
     show() {
-        this._element.classList.remove("hide");
+        this._element.hidden = false;
     }
 
     hide() {
-        this._element.classList.add("hide");
+        this._element.hidden = true;
     }
 }

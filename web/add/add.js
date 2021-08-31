@@ -20,7 +20,7 @@ function handler(file) {
     if (type) {
         names[file.name] = true;
         files.push(file);
-        clearBtn.classList.remove("hide");
+        clearBtn.hidden = false;
         submitBtn.removeAttribute("disabled");
     } else {
         rejected++;
@@ -70,7 +70,7 @@ function clearList() {
     files = [];
     rejected = 0;
     names = {};
-    clearBtn.classList.add("hide");
+    clearBtn.hidden = true;
     submitBtn.setAttribute("disabled", "disabled");
 }
 

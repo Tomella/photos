@@ -20,13 +20,7 @@ export default class KeywordManager {
             let els = document.querySelector(this.config.keywords).querySelectorAll("ph-keyword");
             let up = filter.toUpperCase();
             els.forEach(el => {
-                let show = filter.length == 0 || el.innerText.toUpperCase().indexOf(up) > -1;
-                let classList = el.classList;
-                if(show){
-                    classList.remove("hide");
-                } else {
-                    classList.add("hide");
-                }
+                el.hidden = !(filter.length == 0 || el.innerText.toUpperCase().indexOf(up) > -1);
             });
         }
     }

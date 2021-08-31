@@ -29,10 +29,6 @@ button {
     z-index: 2;
 }
 
-.hide {
-    display: none;
-}
-
 iframe {
     z-index: 1;
     background-color: white;
@@ -50,7 +46,7 @@ iframe {
     <div class="narrow" title="Click to add photos">
         <button class="button">Add Photos</button>
     </div>
-    <iframe class="hide" width="650" height="350"></iframe>
+    <iframe hidden width="650" height="350"></iframe>
 </div>
 `;
 
@@ -90,9 +86,9 @@ customElements.define('ph-add-image', class AddImage extends HTMLElement {
                 iframe.src = "/add";
             }
 
-            iframe.classList.remove("hide");
+            iframe.hidden = false;
         } else {
-            iframe.classList.add("hide");
+            iframe.hidden = true;
         }
 
     }

@@ -21,16 +21,13 @@ template.innerHTML = `
     font-family: "URW Chancery L", cursive;
     font-size: 90%;
 }
-.hide {
-    display: none;
-}
 </style>
 <div class="box">
     <div class="box-img">
         <a>
             <img>
         </a>
-        <div class="caption hide"></div>
+        <div class="caption" hidden></div>
     </div>
 </div>
 `;
@@ -75,9 +72,9 @@ customElements.define('al-image', class AlbumImage extends HTMLElement {
         
         element.innerHTML = caption;
         if(caption) {
-            element.classList.remove("hide");
+            element.hidden = false;
         } else {
-            element.classList.add("hide");
+            element.hidden = true;
         }
     }
 

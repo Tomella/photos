@@ -54,7 +54,7 @@ h4 {
 
 #keyword-container.show {
     top: 15px;
-    height: 80%;
+    height:fit-content;
     transition: height 1s;
 }
 
@@ -90,7 +90,7 @@ h4 {
 }
 
 .select-label {
-    padding-bottom: 30px;
+    padding: 5px;
     color: black; 
     border: none;
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
@@ -102,10 +102,6 @@ h4 {
 .keywords {
     margin-top: 25px;
     font-size: smaller;
-}
-
-.hide {
-    display: none;
 }
 
 al-expand-image {

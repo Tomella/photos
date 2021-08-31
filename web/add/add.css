@@ -47,7 +47,3 @@ button {
 button:disabled {
     color: gray;
 }
-
-.hide {
-    display: none;
-}

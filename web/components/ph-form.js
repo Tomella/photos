@@ -33,17 +33,13 @@ template.innerHTML = `
             font-weight: bold;
             display: inline-block;
         }
-        
-        .hide {
-            display: none;
-        }
 
         .deleteBtn {
         
         }
     </style>
     <div id="form-container">
-        <div id="form-confirm" class="hide">
+        <div id="form-confirm" hidden>
             <div style="padding:10px;padding-left: 30px; padding-right: 30px">
                 <h3>Warning - This can not be undone.</h3>
                 <div>Are you sure you want to delete this photo, thumbnail and record?</div>
@@ -147,7 +143,7 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
 
         this.$name("form-delete-cancel").addEventListener("click", event => {
             let confirm = this.$("#form-confirm");
-            confirm.classList.add("hide");
+            confirm.hidden = true;
             confirm.classList.remove("form-confirm-show");
         });
 
@@ -157,7 +153,7 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
 
         this.$name("deleteBtn").addEventListener("click", event => {
             let confirm = this.$("#form-confirm");
-            confirm.classList.remove("hide");
+            confirm.hidden = false;
             confirm.classList.add("form-confirm-show");
         });
 

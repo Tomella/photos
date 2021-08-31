@@ -17,7 +17,7 @@ body {
     left:20px;
     font-size: 150%;
     font-weight: bold;
-    text-shadow: 1px 1px #FFffff;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
 #heading a {
@@ -65,20 +65,6 @@ ph-previous-next {
     bottom: 0px;
     z-index: 40;  
 }
-
-ph-confirm-delete {
-    position: fixed;
-    z-index: 1001;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-}
-
-ph-confirm-delete.hide {
-    z-index: -1;
-}
-
 
 .hide-image {
     max-height:1px;

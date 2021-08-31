@@ -31,17 +31,13 @@ template.innerHTML = `
     width:100%;
 }
 
-.hide {
-    display: none;
-}
-
 a, ph-previous, ph-next, img {
     cursor:pointer;  
 }
 </style>
 <div class="ph-previous-next">
-    <a class="ph-previous hide" title="Edit previous photo"><button class="thumbBtn"><img class="previous-image"></img>&lt;&lt;</button></a>
-    <a class="ph-next hide" title="Edit next photo"><button class="thumbBtn"><img class="next-image"></img>&gt;&gt;</button></a>
+    <a class="ph-previous" hidden title="Edit previous photo"><button class="thumbBtn"><img class="previous-image"></img>&lt;&lt;</button></a>
+    <a class="ph-next" hidden title="Edit next photo"><button class="thumbBtn"><img class="next-image"></img>&gt;&gt;</button></a>
 </div>
 `;
 let timeout = null;
@@ -69,7 +65,7 @@ customElements.define('ph-previous-next', class PreviousNext extends HTMLElement
         this._next = data;
         this.$(".previous-image").src = data.thumbPath;
         container.href = data.url;
-        container.classList.remove("hide");
+        container.hidden = false;
     }
 
     set next(data) {
@@ -77,7 +73,7 @@ customElements.define('ph-previous-next', class PreviousNext extends HTMLElement
         this._previous = data;
         this.$(".next-image").src = data.thumbPath;
         container.href = data.url;
-        container.classList.remove("hide");
+        container.hidden = false;
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {

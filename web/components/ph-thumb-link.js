@@ -29,14 +29,10 @@ template.innerHTML = `
    overflow: hidden;
    text-overflow: ellipsis;
 }
-
-.hide {
-   display: none;
-}
 </style>
 <div class="ph-thumb-link-container">
    <span style="position:absolute;right:0">
-      <button class="undecorated ph-thumb-edit hide" title="Edit image details such as look of thumbnail and annotating the image">🖉</button>
+      <button class="undecorated ph-thumb-edit" hidden title="Edit image details such as look of thumbnail and annotating the image">🖉</button>
       <button class="undecorated ph-thumb-unstick" title="Hide thumbnail.">X</button>
    </span>
    <div>
@@ -85,11 +81,7 @@ customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
       let edit = this.getAttribute("edit");
       console.log("EE", edit);
       let target =  this.$(".ph-thumb-edit");
-      if(edit === "true" || edit === "Y" || edit === "1") {
-         target.classList.remove("hide");
-      } else {
-         target.classList.add("hide");
-      }
+      target.hidden = !(edit === "true" || edit === "Y" || edit === "1");
    }
 
    _src() {

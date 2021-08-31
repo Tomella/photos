@@ -22,10 +22,6 @@ template.innerHTML = `
     max-width:fit-content; 
     opacity:0.8;
   }
-
-  .hide {
-      display: none;
-  }
 </style>
 <div id="container" style="">
 
@@ -92,13 +88,7 @@ customElements.define('ph-keywords', class Keywords extends HTMLElement {
         let els = this.$$("ph-keyword");
         let up = this._filter.toUpperCase();
         els.forEach(el => {
-            let show = this._filter.length == 0 || el.innerText.toUpperCase().indexOf(up) > -1;
-            let classList = el.classList;
-            if(show){
-                classList.remove("hide");
-            } else {
-                classList.add("hide");
-            }
+            el.hidden = !(this._filter.length == 0 || el.innerText.toUpperCase().indexOf(up) > -1);
         });
     }
 });
