@@ -63,6 +63,10 @@ template.innerHTML = `
     bottom:40px;
   }
   
+  .no-caption {
+     bottom: 0;
+  }
+
   /* Next & previous buttons */
   .prev,
   .next {
@@ -199,7 +203,14 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
 
       target.appendChild(photo);
 
-      this.$(".caption-container").innerHTML = feature.annotation ? feature.annotation : "";
+      let annotation = feature.annotation ? feature.annotation : "";
+      if(!annotation) {
+         target.classList.add("no-caption");
+      } else {
+         target.classList.remove("no-caption");
+      }
+      this.$(".caption-container").innerHTML = annotation;
+
       this.$(".numbertext").innerHTML = (idx + 1) + " / " + this._data.length;
    }
 
