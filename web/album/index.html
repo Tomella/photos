@@ -11,11 +11,12 @@
     <script type="module" src="./component/al-expand-image.js"></script>
     <script type="module" src="./component/al-image-container.js"></script>
     <script type="module" src="./component/al-image.js"></script>
+    <script type="module" src="./component/al-photo.js"></script>
     <link rel="stylesheet" href="album.css" />
 </head>
 
 <body>
-    <h1 id="album-title"></h1>
+    <h1 id="album-title">Select an Album.</h1>
     <h4>Photo Album</h4>
     <div id="select-album">
         <button class="select-label">Select Album...</button>
@@ -31,7 +32,7 @@
         </div>
     </div>
     <al-image-container></al-image-container>
-    <al-expand-imager></al-expand-imager>
+    <al-expand-image hidden></al-expand-image>
 </body>
 <script type="module" src="album.js"></script>
 

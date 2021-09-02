@@ -8,5 +8,11 @@ export default {
         keywords: ".keywords",
         redirect: "/album/?keyword=",
         filter: ".filter-input"
+    },
+
+    viewer: {
+        photosPath: "https://photos.geospeedster.com/photos/",
+        thumbsPath: "https://photos.geospeedster.com/photos/thumbs/",
+        container: "al-expand-image"
     }
 }
