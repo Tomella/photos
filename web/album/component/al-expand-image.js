@@ -4,7 +4,7 @@ template.innerHTML = `
 <style>
   .numbertext {
     color: #f2f2f2;
-    font-size: 12px;
+    font-size: 18px;
     padding: 8px 12px;
     position: absolute;
     top: 0;
@@ -38,7 +38,7 @@ template.innerHTML = `
     position: absolute;
     top: 10px;
     right: 25px;
-    font-size: 35px;
+    font-size: 42px;
     font-weight: bold;
   }
   
@@ -72,7 +72,7 @@ template.innerHTML = `
     margin-top: -50px;
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 36px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
