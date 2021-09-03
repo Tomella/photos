@@ -176,6 +176,7 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
          thumb.setAttribute("src", thumbBase + feature.filename);
          target.appendChild(thumb);
          photo.setAttribute("hidden", true);
+         photo.setAttribute("title", "Taken " + feature.localTime.longStr + " (local time).")
          photo.onload = (ev) => {
             thumb.setAttribute("hidden", true);
             photo.removeAttribute("hidden");

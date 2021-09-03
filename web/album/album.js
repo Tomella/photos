@@ -2,6 +2,7 @@ import loader from "../lib/loader.js";
 import config from "./config.js";
 import Keyword from "./keyword.js";
 import Viewer from "./viewer.js";
+import LocalTime from "../lib/localtime.js";
 
 
 let intv = null;
@@ -26,12 +27,17 @@ window.onload = async (el) => {
    period += response.length;
    let container = document.querySelector("al-image-container");
    response.forEach((feature, idx) => {
+      // Temporal convenience
+      feature.localTime = new LocalTime(feature.time_point);
+
       let image = document.createElement("al-image");
       image.onload = counter;
       image.setAttribute("src", config.thumbsPath + feature.filename);
       if (feature.annotation) {
          image.setAttribute("caption", feature.annotation);
       }
+
+      image.title= feature.localTime.longStr;
       container.appendChild(image);
 
       image.addEventListener("click", el => {
