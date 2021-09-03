@@ -17,7 +17,7 @@ export default class LocalTime {
    static DATE_POSTFIX = ["", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "st"];
 
    static leadingZero(int) {
-      return (int < 9? "0":"") + int; 
+      return (int <  9 ? "0" : "" ) + int.toString(); 
    }
 
    static toAmPmHour(hour) {
