@@ -10,46 +10,11 @@ template.innerHTML = `
 `;
 
 customElements.define('al-image-container', class AlbumImageContainer extends HTMLElement {
-    static get observedAttributes() { return ['src', 'href', 'title']; }
-
-    $(selector) {
-        return this.shadowRoot && this.shadowRoot.querySelector(selector);
-    }
-
-    $$(selector) {
-        return this.shadowRoot && this.shadowRoot.querySelectorAll("*")
-    }
 
     constructor() {
         super();
         const root = this.attachShadow({ mode: 'open' });
         root.appendChild(template.content.cloneNode(true));
-    }
-
-    connectedCallback() {
-        //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
-    }
-
-    _href() {
-        let href = this.getAttribute("href");
-        let target = this.$(".ph-thumb-image");
-        target.setAttribute("href", href);
-        target.focus();
-        console.log("focus set.");
-    }
-
-    _src() {
-        let src = this.getAttribute("src");
-        this.$("img").setAttribute("src", src);
-    }
-
-    _title() {
-        let title = this.getAttribute("title");
-        this.$("div").setAttribute("title", title);
-    }
-
-    set data(value) {
-
     }
 
     update() {
@@ -80,9 +45,5 @@ customElements.define('al-image-container', class AlbumImageContainer extends HT
                 boxHeightArr[minIndex] = boxHeightArr[minIndex] + el.offsetHeight;
             }
         });
-    }
-
-    attributeChangedCallback(attr, oldValue, newValue) {
-        this["_" + attr]();
     }
 });

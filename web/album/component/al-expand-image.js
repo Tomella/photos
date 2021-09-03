@@ -2,7 +2,6 @@ const template = document.createElement('template');
 
 template.innerHTML = `
 <style>
-  /* Number text (1/3 etc) */
   .numbertext {
     color: #f2f2f2;
     font-size: 12px;
@@ -11,7 +10,6 @@ template.innerHTML = `
     top: 0;
   }
   
-  /* The Modal (background) */
   .modal {
     position: absolute;
     z-index: 1;
@@ -24,7 +22,6 @@ template.innerHTML = `
     background-color: black;
   }
   
-  /* Modal Content */
   .modal-content {
     position: relative;
     top: 0;
@@ -36,7 +33,6 @@ template.innerHTML = `
     max-width: 1200px;
   }
   
-  /* The Close Button */
   .close {
     color: white;
     position: absolute;
@@ -53,7 +49,6 @@ template.innerHTML = `
     cursor: pointer;
   }
   
-  /* Hide the slides by default */
   .mySlides {
     display: none;
     position: absolute;
@@ -67,7 +62,6 @@ template.innerHTML = `
      bottom: 0;
   }
 
-  /* Next & previous buttons */
   .prev,
   .next {
     cursor: pointer;
@@ -85,13 +79,11 @@ template.innerHTML = `
     -webkit-user-select: none;
   }
   
-  /* Position the "next button" to the right */
   .next {
     right: 0;
     border-radius: 3px 0 0 3px;
   }
   
-  /* On hover, add a black background color with a little bit see-through */
   .prev:hover,
   .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
@@ -103,7 +95,6 @@ template.innerHTML = `
     object-fit: contain;
   }
 
-  /* Caption text */
   .caption-container {
      position: absolute;
      left: 0;
@@ -128,16 +119,10 @@ template.innerHTML = `
 `;
 
 customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElement {
-   static get observedAttributes() { return ['index', 'base', 'thumbbase', 'hidden']; }
-
-   #index = null
+   static get observedAttributes() { return ['index', 'hidden']; }
 
    $(selector) {
       return this.shadowRoot && this.shadowRoot.querySelector(selector);
-   }
-
-   $$(selector) {
-      return this.shadowRoot && this.shadowRoot.querySelectorAll("*")
    }
 
    constructor() {
@@ -155,7 +140,7 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
       });
 
       this.$(".prev").addEventListener("click", (ev) => {
-         let prev = this.#index - 1;
+         let prev = +this.getAttribute("index") - 1;
          if(prev < 0) {
             prev = this._data.length - 1;
          }
@@ -164,13 +149,9 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
 
       this.$(".next").addEventListener("click", (ev) => {
          console.log("NEXT", ev);
-         let next = (this.#index + 1) % this._data.length;
+         let next = (+this.getAttribute("index") + 1) % this._data.length;
          this.setAttribute("index", next);
       });
-   }
-
-   connectedCallback() {
-      //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
    }
 
    set data(data) {
@@ -178,7 +159,7 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
    }
 
    _index() {
-      let idx = this.#index = +this.getAttribute("index");
+      let idx = +this.getAttribute("index");
       let feature = this._data[idx];
       let target = this.$(".mySlides");
 
@@ -212,14 +193,6 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
       this.$(".caption-container").innerHTML = annotation;
 
       this.$(".numbertext").innerHTML = (idx + 1) + " / " + this._data.length;
-   }
-
-   _base() {
-      // Nothing to do yet
-   }
-
-   _thumbbase() {
-      // Nothing to do yet
    }
 
    _hidden() {
