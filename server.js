@@ -208,7 +208,6 @@ async function run() {
       } else {
          res.json({success: !code});;
       }
-      res.json({success: !code});;
    });
 
    // Direction can be right, left, 180 or original. All are relative to the original photo.
