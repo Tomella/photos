@@ -5,6 +5,7 @@ import mysql from "mysql2/promise";
 import passport from "passport";
 import passportFacebook from 'passport-facebook';
 import session from "express-session";
+import {spawn} from "child_process";
 
 import Photo from "./lib/photo.js";
 import Security from "./lib/security.js";
@@ -179,7 +180,7 @@ async function run() {
    });
 
    // Direction can be right, left, 180 or original. All are relative to the original photo.
-   app.all('/rotatethumb/:direction', isAdmin, async (req, res) => {
+   app.all('/rotatethumbOld/:direction', isAdmin, async (req, res) => {
       try {
          let data = await photo.findById(req.query.id);
          await thumb.rotateThumb(data.filename, req.params.direction);
@@ -187,6 +188,27 @@ async function run() {
       } catch(e) {
          res.send(e);
       }
+   });
+
+   // Direction can be right, left, 180 or original. All are relative to the original photo.
+   app.all('/rotatethumb/:direction', isAdmin, async (req, res, next) => {
+      let data = await photo.findById(req.query.id);
+
+      let subprocess = spawn("node", ['lib/processrotate.js', '--filename=' + data.filename, '--direction=' + req.params.direction]);
+
+      for await (const chunk of subprocess.stdout) {
+          console.log('stdout chunk: ' + chunk);
+      }
+
+      let code = await new Promise( (resolve, reject) => {
+         subprocess.on('close', resolve);
+      });
+      if(code === 0) {
+         res.send(data);
+      } else {
+         res.json({success: !code});;
+      }
+      res.json({success: !code});;
    });
 
    // Direction can be right, left, 180 or original. All are relative to the original photo.
