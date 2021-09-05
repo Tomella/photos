@@ -113,9 +113,18 @@ h4 {
 
 al-expand-image {
     position: absolute;
-    z-index: 999999999;
+    z-index: 199;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+}
+
+ph-map {
+   position: fixed;
+   z-index: 5000;
+   bottom: 0;
+   right: 0;
+   width: 256px;
+   height:256px;
 }

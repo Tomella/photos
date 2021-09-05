@@ -17,11 +17,6 @@ export default class Viewer {
             fn();
          });
       });
-
-      
-      container.addEventListener("map-toggle", ev => {
-         console.log("Map toggle", ev);
-      });
    }
 
    show(idx) {

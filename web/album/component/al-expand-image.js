@@ -70,7 +70,7 @@ template.innerHTML = `
   .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: auto;
     padding: 16px;
     margin-top: -50px;
@@ -158,13 +158,23 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
             prev = this._data.length - 1;
          }
          this.setAttribute("index", prev);
+         this._fireChange();
       });
 
       this.$(".next").addEventListener("click", (ev) => {
          console.log("NEXT", ev);
          let next = (+this.getAttribute("index") + 1) % this._data.length;
          this.setAttribute("index", next);
+         this._fireChange();
       });
+   }
+
+   _fireChange() {
+      const event = new CustomEvent('photo-change', {
+         bubbles: true,
+         composed: true
+      });
+      this.dispatchEvent(event);
    }
 
    set data(data) {

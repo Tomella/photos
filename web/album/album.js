@@ -49,10 +49,30 @@ window.onload = async (el) => {
    });
    window.onresize = update;
 
+   let map = document.querySelector("ph-map");
    viewer.initialise(response);
-
    viewer.onClose(() => {
       container.removeAttribute("hidden");
+      map.setAttribute("hidden", "hidden");
+   });
+
+   document.addEventListener("map-toggle", ev => {
+      if(map.hasAttribute("hidden")) {
+         map.removeAttribute("hidden");
+         let index = +ev.target.getAttribute("index");
+         let photo = response[index];
+         map.setAttribute("latlon", photo.latitude + "," + photo.longitude);
+      } else {
+         map.setAttribute("hidden", "hidden");
+      }
+   });
+
+   document.addEventListener("photo-change", ev => {
+      if(!map.hasAttribute("hidden")) {
+         let index = +ev.target.getAttribute("index");
+         let photo = response[index];
+         map.setAttribute("latlon", photo.latitude + "," + photo.longitude);
+      }
    });
 
 }
