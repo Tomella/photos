@@ -33,13 +33,17 @@ template.innerHTML = `
     max-width: 1200px;
   }
   
-  .close {
+  .close, .map-button {
     color: white;
     position: absolute;
     top: 10px;
     right: 25px;
     font-size: 48px;
     font-weight: bold;
+  }
+
+  .map-button {
+     top: 48px;
   }
   
   .close:hover,
@@ -106,7 +110,8 @@ template.innerHTML = `
   }
 </style>
 <div id="myModal" class="modal">
-   <span class="close cursor">×</span>
+<span class="close cursor">×</span>
+<span class="map-button cursor"><ph-globe></ph-globe></span>
    <div class="modal-content">
       <div class="numbertext"></div>
       <div class="mySlides" style="display: block;"></div>
@@ -130,6 +135,14 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
       const root = this.attachShadow({ mode: 'open' });
       root.appendChild(template.content.cloneNode(true));
       this.modal = this.$("#myModal");
+
+      this.$(".map-button").addEventListener("click", (ev) => {
+         const event = new CustomEvent('map-toggle', {
+            bubbles: true,
+            composed: true
+         });
+         this.dispatchEvent(event);
+      });
 
       this.$(".close").addEventListener("click", (ev) => {
          const event = new CustomEvent('close', {

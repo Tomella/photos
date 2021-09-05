@@ -26,6 +26,7 @@ window.onload = async (el) => {
    let response = await loader("/albumService/keyword" + window.location.search);
    period += response.length;
    let container = document.querySelector("al-image-container");
+
    response.forEach((feature, idx) => {
       // Temporal convenience
       feature.localTime = new LocalTime(feature.time_point);
@@ -39,6 +40,7 @@ window.onload = async (el) => {
 
       image.title= feature.localTime.longStr;
       container.appendChild(image);
+
 
       image.addEventListener("click", el => {
          viewer.show(idx);
