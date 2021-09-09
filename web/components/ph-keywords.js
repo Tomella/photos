@@ -23,9 +23,7 @@ template.innerHTML = `
     opacity:0.8;
   }
 </style>
-<div id="container" style="">
-
-</div>
+<div id="container"></div>
   `;
 
 customElements.define('ph-keywords', class Keywords extends HTMLElement {

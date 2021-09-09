@@ -6,7 +6,7 @@ import LocalTime from "../lib/localtime.js";
 
 
 let intv = null;
-let period = 10;
+let period = 250;
 
 
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -78,11 +78,10 @@ window.onload = async (el) => {
 }
 
 function counter(ev) {
-   console.log(ev);
-   period += 10;
    if (intv) {
       return;
    }
+   period += 10;
 
    intv = setTimeout(update, period);
 }

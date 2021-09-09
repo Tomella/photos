@@ -109,7 +109,8 @@ async function run() {
 
    // It has to be down here to pick up the authentication.
    const photoRouter = new PhotoRouter(config.server, photo, app, [isAdmin]);
-
+   
+   app.use('/scripts', express.static(__dirname + '/node_modules/'));
 
    app.all('/all', async (req, res) => {
       let photos = await photo.all(req.query.startDate, req.query.endDate);

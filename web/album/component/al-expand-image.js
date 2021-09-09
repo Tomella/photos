@@ -8,6 +8,7 @@ template.innerHTML = `
     padding: 8px 12px;
     position: absolute;
     top: 0;
+    z-index: 10;
   }
   
   .modal {
@@ -30,7 +31,8 @@ template.innerHTML = `
     padding: 0;
     width: 90%;
     height: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
+    z-index: 2;
   }
   
   .close, .map-button {
@@ -40,6 +42,7 @@ template.innerHTML = `
     right: 25px;
     font-size: 48px;
     font-weight: bold;
+    z-index: 3;
   }
 
   .map-button {
@@ -60,6 +63,7 @@ template.innerHTML = `
     left: 0;
     right: 0;
     bottom:40px;
+    z-index: 1;
   }
   
   .no-caption {
@@ -81,6 +85,7 @@ template.innerHTML = `
     border-radius: 0 3px 3px 0;
     user-select: none;
     -webkit-user-select: none;
+    z-index: 10;
   }
   
   .next {
@@ -107,11 +112,12 @@ template.innerHTML = `
     padding: 10px;
     color: white;
     bottom: 0px;
+    z-index: 2;
   }
 </style>
 <div id="myModal" class="modal">
-<span class="close cursor">×</span>
-<span class="map-button cursor"><ph-globe></ph-globe></span>
+   <span class="close cursor">×</span>
+   <span class="map-button cursor"><ph-globe></ph-globe></span>
    <div class="modal-content">
       <div class="numbertext"></div>
       <div class="mySlides" style="display: block;"></div>
@@ -188,7 +194,7 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
 
       target.innerHTML = "";
       
-      let photo = document.createElement("img");
+      let photo = document.createElement("al-magnify");
       let base = this.getAttribute("base");
 
       photo.setAttribute("src", base + feature.filename);

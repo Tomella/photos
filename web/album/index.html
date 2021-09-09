@@ -10,17 +10,22 @@
     <script type="module" src="../components/ph-globe.js"></script>
     <script type="module" src="../components/ph-map.js"></script>
     <script type="module" src="../components/ph-keyword.js"></script>
+    <script type="module" src="../components/qr-code.js"></script>
     <script type="module" src="./component/al-expand-image.js"></script>
     <script type="module" src="./component/al-image-container.js"></script>
     <script type="module" src="./component/al-image.js"></script>
+    <script type="module" src="./component/al-magnify.js"></script>
     <link rel="stylesheet" href="album.css" />
 </head>
 
 <body>
-    <h1 id="album-title">Select an Album.</h1>
-    <h4>Photo Album</h4>
+   <div>
+      <h1 id="album-title">Select an Album.</h1>
+      <h4>Photo Album</h4>
+      <qr-code title="View QR Code for this Album"></qr-code>
+   </div>
     <div id="select-album">
-        <button class="select-label">Select Album...</button>
+        <button role="button" title="Choose an Album to view" class="select-label">Select Album...</button>
     </div>
     <div id="keyword-container">
         View Album

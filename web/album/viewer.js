@@ -22,10 +22,12 @@ export default class Viewer {
    show(idx) {
       this.container.removeAttribute("hidden");
       this.container.setAttribute("index", idx);
+      document.querySelector("body").classList.add("viewer");
    }
 
    hide() {
       this.container.setAttribute("hidden", "hidden");
+      document.querySelector("body").classList.remove("viewer");
    }
 
    onClose(fn) {

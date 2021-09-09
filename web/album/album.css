@@ -10,6 +10,10 @@ body {
     height: 100%;
 }
 
+body.viewer {
+   overflow: hidden;
+}
+
 .box{
     float: left;/* Set each photo box as a floating element to float all the pictures to the first line of the page*/
     padding: 5px;
@@ -97,6 +101,7 @@ h4 {
 }
 
 .select-label {
+   font-size: large;
     padding: 5px;
     color: black; 
     border: none;
@@ -127,4 +132,12 @@ ph-map {
    right: 0;
    width: 256px;
    height:192px;
+}
+
+
+qr-code {
+   z-index: 1;
+   position: absolute;
+   right: 140px;
+   top: 15px;
 }

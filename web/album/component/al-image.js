@@ -24,81 +24,81 @@ template.innerHTML = `
 </style>
 <div class="box">
     <div class="box-img">
-        <a>
+        <div class="cropper">
             <img>
-        </a>
+        </div>
         <div class="caption" hidden></div>
     </div>
 </div>
 `;
 
 customElements.define('al-image', class AlbumImage extends HTMLElement {
-    static get observedAttributes() { return ['src', 'href', 'title', 'caption']; }
+   static get observedAttributes() { return ['src', 'href', 'title', 'caption']; }
 
-    $(selector) {
-        return this.shadowRoot && this.shadowRoot.querySelector(selector);
-    }
+   $(selector) {
+      return this.shadowRoot && this.shadowRoot.querySelector(selector);
+   }
 
-    constructor() {
-        super();
-        const root = this.attachShadow({ mode: 'open' });
-        root.appendChild(template.content.cloneNode(true));
-    }
+   constructor() {
+      super();
+      const root = this.attachShadow({ mode: 'open' });
+      root.appendChild(template.content.cloneNode(true));
+   }
 
-    connectedCallback() {
-        //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
-    }
+   connectedCallback() {
+      //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
+   }
 
-    _href() {
-        let href = this.getAttribute("href");
-        let target = this.$("a");
-        target.setAttribute("href", href);
-    }
+   _href() {
+      let href = this.getAttribute("href");
+      let target = this.$("a");
+      target.setAttribute("href", href);
+   }
 
-    _src() {
-        let src = this.getAttribute("src");
-        let img = this.$("img");
-        img.setAttribute("src", src);
-    }
+   _src() {
+      let src = this.getAttribute("src");
+      let img = this.$("img");
+      img.setAttribute("src", src);
+   }
 
-    _title() {
-        let title = this.getAttribute("title");
-        this.$("div").setAttribute("title", title);
-    }
+   _title() {
+      let title = this.getAttribute("title");
+      this.$("div").setAttribute("title", title);
+   }
 
-    _caption() {
-        let caption = this.getAttribute("caption");
-        let element = this.$(".caption");
-        
-        element.innerHTML = caption;
-        if(caption) {
-            element.hidden = false;
-        } else {
-            element.hidden = true;
-        }
-    }
+   _caption() {
+      let caption = this.getAttribute("caption");
+      let element = this.$(".caption");
 
-    get width() {
-        return this.$(".box").offsetWidth;
-    }
+      element.innerHTML = caption;
+      if (caption) {
+         element.hidden = false;
+      } else {
+         element.hidden = true;
+      }
+   }
 
-    get offsetLeft() {
-        return this.$(".box").offsetLeft;
-    }
+   get width() {
+      return this.$(".box").offsetWidth;
+   }
 
-    get offsetHeight() {
-        return this.$(".box").offsetHeight;
-    }
+   get offsetLeft() {
+      return this.$(".box").offsetLeft;
+   }
 
-    set onload(fn) {
-        this.$("img").onload = fn;
-    }
+   get offsetHeight() {
+      return this.$(".box").offsetHeight;
+   }
 
-    set data(value) {
+   set onload(fn) {
+      this.$("img").onload = fn;
+   }
 
-    }
+   set data(value) {
 
-    attributeChangedCallback(attr, oldValue, newValue) {
-        this["_" + attr]();
-    }
+   }
+
+   attributeChangedCallback(attr, oldValue, newValue) {
+      this["_" + attr]();
+   }
 });

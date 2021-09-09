@@ -26,7 +26,7 @@ class PhMap {
    addPoint(point, pan = false) {
       let marker = L.marker(point).addTo(this.map);
       if (pan) {
-         this.map.setView(point);
+         this.map.panTo(point);
       }
       return marker;
    }
@@ -53,7 +53,7 @@ customElements.define('ph-map', class PhotoMapElement extends HTMLElement {
       options: {
          center: [-34.454, 138.81],
          minZoom: 5,
-         zoom: 8,
+         zoom: 9,
          maxZoom: 15
       },
       layers: [
