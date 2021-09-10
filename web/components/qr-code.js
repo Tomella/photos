@@ -30,7 +30,7 @@ template.innerHTML = `
    box-shadow: 0 0 20px #ddd;
     position: relative;
     padding: 10px;
-   border: 2px solid black;
+   border: 2px solid gray;
    border-radius: 6px;
    background-color: white;
    right: 0;
