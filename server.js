@@ -9,6 +9,7 @@ import {spawn} from "child_process";
 
 import Photo from "./lib/photo.js";
 import Security from "./lib/security.js";
+import StaticMapper from "./lib/staticmapper.js";
 import DevSecurity from "./lib/dev-security.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
@@ -109,8 +110,7 @@ async function run() {
 
    // It has to be down here to pick up the authentication.
    const photoRouter = new PhotoRouter(config.server, photo, app, [isAdmin]);
-   
-   app.use('/scripts', express.static(__dirname + '/node_modules/'));
+   const staticMapper = new StaticMapper(app, "/scripts/", __dirname + '/node_modules/', config.staticMappings);
 
    app.all('/all', async (req, res) => {
       let photos = await photo.all(req.query.startDate, req.query.endDate);
