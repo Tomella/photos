@@ -121,15 +121,15 @@ template.innerHTML = `
   }
 </style>
 <div id="myModal" class="modal">
-   <span class="close cursor">×</span>
-   <span class="map-button cursor"><ph-globe></ph-globe></span>
-   <span class="download-button cursor"><ph-download></ph-download></span>
+   <span class="close cursor" title="Close viewer, return to album view.">×</span>
+   <span class="map-button cursor" title="See on a map where this photo was taken."><ph-globe></ph-globe></span>
+   <span class="download-button cursor" title="Download this photo."><ph-download></ph-download></span>
    <div class="modal-content">
       <div class="numbertext"></div>
       <div class="mySlides" style="display: block;"></div>
     
-      <a class="prev">❮</a>
-      <a class="next">❯</a>
+      <a class="prev" title="View previous photo in this album.">❮</a>
+      <a class="next" title="View next photo in this album">❯</a>
    </div>
    <div class="caption-container"></div>
 </div>
@@ -219,7 +219,7 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
          thumb.setAttribute("src", thumbBase + feature.filename);
          target.appendChild(thumb);
          photo.setAttribute("hidden", true);
-         photo.setAttribute("title", "Taken " + feature.localTime.longStr + " (local time).")
+         photo.setAttribute("title", "Taken " + feature.localTime.longStr + "\n(File name: " + feature.filename + ").")
          photo.onload = (ev) => {
             thumb.setAttribute("hidden", true);
             photo.removeAttribute("hidden");
