@@ -97,6 +97,12 @@ async function run() {
       }
    ));
 
+   app.all('/download/:name', function(req, res) {
+      let path = __dirname + config.processDownload.photosDirectory + sanitise(req.params.name);
+      console.log("PATH = " + path)
+      res.download(path);
+   });
+
    app.get('/auth/facebook', passport.authenticate('facebook', {
       scope: ['public_profile', 'email']
    }));
@@ -259,4 +265,9 @@ function pointsToJson(photos, name = "photos") {
          }
       }))
    };
+}
+
+function sanitise(input) {
+   // Just wipe out multiple full stops, slashes and backslashes at the moment.
+   return (input? input :"").replace(/\\|\/|\.{2,}/gi, "");
 }

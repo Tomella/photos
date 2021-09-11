@@ -7,7 +7,7 @@ img {
    width: 100%;
    height: 100%;
    object-fit: contain;
-   cursor: grab;
+   cursor: zoom-in;
 }
 div {
    height: 100%;
@@ -90,14 +90,17 @@ customElements.define('al-magnify', class AlbumImageMagnify extends HTMLElement 
             let circumstances = {preTransform: dimensions};
             let postTransform = circumstances.postTransform = {};
 
-
             scale -= 0.5 * Math.sign(ev.deltaY);
    
             scale = Math.max(1, scale);
-            scale = Math.min(8, scale);
-   
+            scale = Math.min(8, scale); 
+
             if (scale == 1) {
                translate.x = translate.y = 0;
+            } else {
+               let offsetX = (0.5 * dimensions.containerWidth - ev.x) * scale;
+               let offsetY = (0.5 * dimensions.containerHeight - ev.y) * scale;
+               console.log("Offset", offsetX, offsetY);
             }   
             let translateStr = `translate(${translate.x}px,${translate.y}px)`;
 
@@ -115,7 +118,8 @@ customElements.define('al-magnify', class AlbumImageMagnify extends HTMLElement 
    }
 
    _decorateScaleDetails(target, dimensions, scale, xY) {
-      let center = 
+      let center = {x: 0.5 * dimensions.containerWidth, y: 0.5 * dimensions.containerHeight};
+      target.center = center;
       target.scale = scale;
       target.width = scale * dimensions.width;
       target.height = scale * dimensions.height;

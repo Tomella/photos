@@ -4,10 +4,8 @@ import Keyword from "./keyword.js";
 import Viewer from "./viewer.js";
 import LocalTime from "../lib/localtime.js";
 
-
 let intv = null;
 let period = 250;
-
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -67,6 +65,13 @@ window.onload = async (el) => {
       }
    });
 
+   document.addEventListener("download", ev => {
+      let index = +ev.target.getAttribute("index");
+      let photo = response[index];
+      console.log("PHOTO", photo)
+      window.location = "/download/" + photo.filename;
+   });
+
    document.addEventListener("photo-change", ev => {
       if(!map.hasAttribute("hidden")) {
          let index = +ev.target.getAttribute("index");
@@ -74,7 +79,6 @@ window.onload = async (el) => {
          map.setAttribute("latlon", photo.latitude + "," + photo.longitude);
       }
    });
-
 }
 
 function counter(ev) {

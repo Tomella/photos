@@ -54,10 +54,9 @@ async function createThumb({ detail }) {
     );
     let data = await response.json();
 
-    clearMessage()
-
     thumb.src = config.tracker.thumbsPath + data.filename + "?d=" + Date.now();
     console.log(thumb.src);
+    clearMessage();
 }
 
 async function prepareKeywords() {

@@ -35,7 +35,7 @@ template.innerHTML = `
     z-index: 2;
   }
   
-  .close, .map-button {
+  .close, .map-button, .download-button {
     color: white;
     position: absolute;
     top: 10px;
@@ -48,7 +48,11 @@ template.innerHTML = `
   .map-button {
      top: 48px;
   }
-  
+
+  .download-button {
+   top: 92px;
+}
+
   .close:hover,
   .close:focus {
     color: #999;
@@ -102,6 +106,7 @@ template.innerHTML = `
     width: 100%;
     height: 100%;
     object-fit: contain;
+    cursor: wait;
   }
 
   .caption-container {
@@ -118,6 +123,7 @@ template.innerHTML = `
 <div id="myModal" class="modal">
    <span class="close cursor">×</span>
    <span class="map-button cursor"><ph-globe></ph-globe></span>
+   <span class="download-button cursor"><ph-download></ph-download></span>
    <div class="modal-content">
       <div class="numbertext"></div>
       <div class="mySlides" style="display: block;"></div>
@@ -146,6 +152,14 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
          const event = new CustomEvent('map-toggle', {
             bubbles: true,
             composed: true
+         });
+         this.dispatchEvent(event);
+      });
+
+      this.$(".download-button").addEventListener("click", (ev) => {
+         const event = new CustomEvent('download', {
+            bubbles: true,
+            composed: true,
          });
          this.dispatchEvent(event);
       });
