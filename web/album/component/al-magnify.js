@@ -85,7 +85,19 @@ customElements.define('al-magnify', class AlbumImageMagnify extends HTMLElement 
             //window.t = {circumstances, image};
          });
 
+         image.addEventListener("click", ev => {
+            updatePhoto({
+               x: ev.x,
+               y: ev.y,
+               deltaY: ev.ctrlKey ? 1 : -1
+            })
+         });
+
          image.addEventListener("wheel", ev => {
+            updatePhoto(ev);
+         });
+
+         let updatePhoto = (ev) => {
             let dimensions = imageInfo(image);
             let circumstances = {preTransform: dimensions};
             let postTransform = circumstances.postTransform = {};
@@ -111,7 +123,7 @@ customElements.define('al-magnify', class AlbumImageMagnify extends HTMLElement 
             this._decorateScaleDetails(postTransform, dimensions, scale, translate);
             console.log("Wheel", ev, circumstances);
             //window.t = {circumstances, image};
-         });
+         };
       });
 
       image.src = this.getAttribute("src");
