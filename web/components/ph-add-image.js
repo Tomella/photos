@@ -5,7 +5,8 @@ template.innerHTML = `<style>
 input {
     border: none;
     color: black;
-    padding: 5px 10px;
+    padding: 5px 8px;
+    padding-bottom:2px;
     text-decoration: none;
     display: inline-block;
     margin: 2px -3px 2px 4px;
@@ -20,7 +21,7 @@ button {
     border-bottom: 0;
     font-weight: bold;
     color: black;
-    padding: 10px 14px 10px 11px;
+    padding: 10px 10px 5px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

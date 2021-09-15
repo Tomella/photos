@@ -41,66 +41,84 @@ template.innerHTML = `
 `;
 
 customElements.define('ph-dialog', class Dialog extends HTMLElement {
-    
 
-    $(selector) {
-        return this.shadowRoot && this.shadowRoot.querySelector(selector)
-    }
+   static get observedAttributes() { return ['startdate', 'enddate']; }
 
-    $$(selector) {
-        return this.shadowRoot && this.shadowRoot.querySelectorAll(selector)
-    }
 
-    constructor() {
-        // Do something with the arguments
-        super();
-        // Normally you are adding the template
-        const root = this.attachShadow({ mode: 'open' })
-        root.appendChild(template.content.cloneNode(true));
+   $(selector) {
+      return this.shadowRoot && this.shadowRoot.querySelector(selector)
+   }
 
-        let endDateEl = this.$(".ph-end-date");
-        let startDateEl = this.$(".ph-start-date");
-        
-        endDateEl.setAttribute("max", toReverseFregorian());
+   $$(selector) {
+      return this.shadowRoot && this.shadowRoot.querySelectorAll(selector)
+   }
 
-        let clears = this.$$(".ph-dialog-clear-btn");
-        clears.forEach(element => {
-            element.addEventListener("click", event => {
-                let el = event.target.parentElement.querySelector("input");
-                el.value = "";
-            });
-        });
+   constructor() {
+      // Do something with the arguments
+      super();
+      // Normally you are adding the template
+      const root = this.attachShadow({ mode: 'open' })
+      root.appendChild(template.content.cloneNode(true));
 
-        this.$(".ph-dialog-btn").addEventListener("click", event => {
-            console.log("Button pressed");
-            let startDate = startDateEl.value;
-            let endDate = endDateEl.value;
-            if (startDate && endDate) {
-                if (startDate > endDate) {
-                    let temp = startDate;
-                    startDate = endDate;
-                    endDate = temp;
-                    startDateEl.value = startDate;
-                    endDateEl.value = endDate;
-                }
+      let endDateEl = this.$(".ph-end-date");
+      let startDateEl = this.$(".ph-start-date");
+
+      endDateEl.setAttribute("max", toReverseFregorian());
+
+      let clears = this.$$(".ph-dialog-clear-btn");
+      clears.forEach(element => {
+         element.addEventListener("click", event => {
+            let el = event.target.parentElement.querySelector("input");
+            el.value = "";
+         });
+      });
+
+      this.$(".ph-dialog-btn").addEventListener("click", event => {
+         console.log("Button pressed");
+         let startDate = startDateEl.value;
+         let endDate = endDateEl.value;
+         if (startDate && endDate) {
+            if (startDate > endDate) {
+               let temp = startDate;
+               startDate = endDate;
+               endDate = temp;
+               startDateEl.value = startDate;
+               endDateEl.value = endDate;
             }
-            this.dispatchEvent(new CustomEvent("change", {
-                detail: {
-                    startDate: startDateEl.valueAsDate,
-                    endDate: endDateEl.valueAsDate
-                }
-            }));
-        });
-    }
+         }
+         this.dispatchEvent(new CustomEvent("change", {
+            detail: {
+               startDate: startDateEl.value,
+               endDate: endDateEl.value
+            }
+         }));
+      });
+   }
 
-    connectedCallback() {
-        //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
-    }
+   _startdate() {
+      let value = this.getAttribute("startdate");
+      let element = this.$(".ph-start-date");
+      element.value = value;
+   }
+
+   _enddate() {
+      let value = this.getAttribute("enddate");
+      let element = this.$(".ph-end-date");
+      element.value = value;
+   }
+
+   attributeChangedCallback(attr, oldValue, newValue) {
+      this["_" + attr]();
+   }
+
+   connectedCallback() {
+      //this.shadowRoot.addEventListener('jobexpand', (e) => console.log(e));
+   }
 
 });
 
 function toReverseFregorian(when = new Date()) {
-    return when.getFullYear() +
+   return when.getFullYear() +
       '-' + `${when.getMonth() + 1}`.padStart(2, "0") +
       '-' + `${when.getDate()}`.padStart(2, "0");
 };

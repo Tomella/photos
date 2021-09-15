@@ -18,14 +18,7 @@ export default class Points {
       this.map = map;
    }
 
-   async show(startDate, endDate) {
-      let config = this.config;
-      let url = this.config.url + "?startDate=" +
-         (startDate ? startDate.toJSON().substr(0, 10) : "") + "&endDate=" +
-         (endDate ? endDate.toJSON().substr(0, 10) : "");
-
-      let result = await loader(url);
-
+   async show(result) {
       let options = {
          showCoverageOnHover: true,
          zoomToBoundsOnClick: true,
@@ -65,43 +58,6 @@ export default class Points {
          this.layer.addLayer(marker);
       });
       this.layer.addTo(this.map);
-   }
-
-   async showOld(startDate, endDate) {
-      let config = this.config;
-      let url = this.config.url + "?startDate=" +
-         (startDate ? startDate.toJSON().substr(0, 10) : "") + "&endDate=" +
-         (endDate ? endDate.toJSON().substr(0, 10) : "");
-
-      let response = await loader(url);
-
-      if (!this.last || this.last !== response.features[0].properties.name) {
-         if (this.layer) this.layer.remove();
-
-         // We want to reverse the features so lets shallow copy and reverse
-         let count = response.features.length;
-         let latest = response.features[0];
-         this.last = latest.properties.name;
-
-         this.layer = L.geoJSON(response, {
-            pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
-               ...this.config,
-               fillOpacity: feature.properties.opacity,
-               opacity: feature.properties.opacity
-            })
-         }).on("click", (e, a) => {
-            document.dispatchEvent(new CustomEvent('clusterclick', { detail: e }));
-         }).on("mouseover", (e, a) => {
-            document.dispatchEvent(new CustomEvent('clusterover', { detail: e }));
-         }).on("mouseout", (e, a) => {
-            document.dispatchEvent(new CustomEvent('clusterout', { detail: e }));
-         });
-         this.layer.addTo(this.map)
-         this.map.panTo(latest.geometry.coordinates.reverse());
-         return true;
-      } else {
-         return false;
-      }
    }
 
    stop() {

@@ -2,6 +2,7 @@ import Map from "./map.js";
 import config from "./config.js";
 import Tracker from "./tracker.js";
 import user from "/user.js";
+import loader from "../lib/loader.js";
 import AddImageCtl from "/lib/addimagectl.js";
 
 class Icon {
@@ -34,14 +35,20 @@ let lastIcon = new Icon(null);
 mapManager.create();
 // Show all to begin with
 let tracker = new Tracker(config.tracker, mapManager.map);
-tracker.track();
+
 
 let phDialog = document.querySelector("ph-dialog");
 let phThumbLink = document.querySelector("ph-thumb-link");
 let phMessages = document.querySelector("ph-messages");
+let phGraph = document.querySelector("ph-graph");
 
-phDialog.addEventListener("change", (e) => {
-   tracker.filter(e.detail);
+let result = await broadcastPoints();
+let features = result.features;
+
+phGraph.data = result;
+
+phDialog.addEventListener("change", async (e) => {
+   broadcastFilteredPoints(e.detail.startDate, e.detail.endDate);
 });
 
 phThumbLink.addEventListener("close", (e) => {
@@ -59,15 +66,10 @@ document.addEventListener("clusterover", clusterOver);
 document.addEventListener("clusterout", clusterOut);
 document.addEventListener("message", message);
 document.addEventListener("loggedin", loggedIn);
+phGraph.addEventListener("changedates", changeDates);
 
 document.addEventListener("keyup", function(evt) {
-    var isEscape = false;
-    if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc");
-    } else {
-        isEscape = (evt.keyCode === 27);
-    }
-    if (isEscape) {
+    if (evt.key === "Escape" || evt.key === "Esc") {
         clusterSticky = false;
         clusterOut();
     }
@@ -81,6 +83,24 @@ if(user.name) {
     addImageCtl.show();
 }
 
+async function broadcastPoints() {
+   let points = await loader(config.listUrl);
+   // These are those who care.
+   tracker.track(points);
+   return points;
+}
+
+function broadcastFilteredPoints(startDate = "1900-01-01", endDate = "9999-12-31") {
+   let filtered = []; 
+   if(result) {
+      filtered = features.filter(feature => {
+         let day = feature.properties.time_point.substr(0, 10);
+         return day >= startDate && day <= endDate;
+      });
+      result.features = filtered;
+   }
+   tracker.track(result);
+}
 
 function message(event) {
     // TODO We want to run an event driven message service.
@@ -153,4 +173,10 @@ function clusterOut(event) {
 
 function loggedIn(event) {
     phThumbLink.setAttribute("edit", event.detail.admin);
+}
+
+function changeDates(event) {
+   phDialog.setAttribute("startdate", event.detail.start);
+   phDialog.setAttribute("enddate", event.detail.end);
+   broadcastFilteredPoints(event.detail.start, event.detail.end);
 }

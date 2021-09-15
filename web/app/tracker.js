@@ -8,14 +8,14 @@ export default class Tracker {
       this.colorIndex = -1;
    }
 
-   track(options) {
+   track(data) {
       let track = this.stop();
       if(!track) {
          this.colorIndex = ++this.colorIndex % this.colorIndexLength;
          track = this.tracked = new Points({...this.config,
             fillColor: this.config.colors[this.colorIndex]}, name, this.map);
       }
-      track.show();
+      track.show(data);
    }
 
    stop() {
@@ -25,10 +25,10 @@ export default class Tracker {
       return this.tracked;
    }
 
-   filter({startDate, endDate}) {
+   show(data) {
       let track = this.stop();
       if(track) {
-         track.show(startDate, endDate);
+         track.show(data);
       }
    }
 }

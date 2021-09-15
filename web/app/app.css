@@ -11,17 +11,6 @@ body {
     z-index: 1;
 }
 
-#controls {
-    position: fixed;
-    left: 10px;
-    top: 85px;
-    width: 205px;
-    background-color: white;
-    border: 2px solid rgb(0,0,0,0.2);
-    background-clip: padding-box;
-    border-radius: 4px;
-    z-index: 10;
-}
 
 #messages {
     position: fixed;
@@ -67,4 +56,25 @@ body {
   bottom: 0px;
   left: 18%;
   z-index: 100;
+}
+
+#controls {
+   position: fixed;
+   left: 5px;
+   bottom: 20px;
+   width: 205px;
+   background-color: white;
+   border: 2px solid rgb(0,0,0,0.2);
+   background-clip: padding-box;
+   border-radius: 4px;
+   z-index: 10;
+}
+
+ph-graph {
+   z-index: 90;
+   position: fixed;
+   bottom: 20px;
+   right:0;
+   height: 176px;
+   left: 210px;
 }
