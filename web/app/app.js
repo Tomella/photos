@@ -79,8 +79,10 @@ if(user.name) {
     console.log("User fetched", user);
     document.dispatchEvent(new CustomEvent('loggedin', { detail: user}));
 
-    let addImageCtl = new AddImageCtl(document.querySelector("ph-add-image"));
-    addImageCtl.show();
+    if(user.admin === 'Y') {
+      let addImageCtl = new AddImageCtl(document.querySelector("ph-add-image"));
+      addImageCtl.show();
+    }
 }
 
 async function broadcastPoints() {
