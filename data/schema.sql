@@ -64,11 +64,12 @@ CREATE TABLE IF NOT EXISTS `photo_keyword` (
 -- Dumping structure for table photos.user
 -- DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `last_name` varchar(250) NOT NULL,
   `first_name` varchar(100) NOT NULL,
-  `email` varchar(250) NOT NULL DEFAULT 'N',
+	`email` VARCHAR(250) NULL DEFAULT NULL,
   `admin` enum('Y','N') NOT NULL DEFAULT 'N',
+	`password` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
