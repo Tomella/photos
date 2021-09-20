@@ -2,75 +2,68 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Photos</title>
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="anonymous" />
-    <link rel="stylesheet" href="thirdparty/markercluster.css" />
+   <meta charset="utf-8" />
+   <title>Photos</title>
+   <link rel="icon" type="image/png" href="icon.png">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="anonymous" />
+   <link rel="stylesheet" href="thirdparty/markercluster.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <style>
-        .facebook {
-            background-color: #3b5998 !important;
-            color: #fff !important;
-        }
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+   <style>
+      /* A work around for an annoying little white box on my Google tiles. */
+      .leaflet-google-layer img {
+         transform: scale(1.005);
+      }
+   </style>
+   <link rel="stylesheet" href="app/app.css" />
 
-        .fa-facebook-f:before,
-        .fa-facebook:before {
-            content: "\f09a";
-        }
-        /* A work around for an annoying little white box on my Google tiles. */
-        .leaflet-google-layer img {
-            transform: scale(1.005);
-        }
-    </style>
-    <link rel="stylesheet" href="app/app.css" />
-    
-    <script type="module" src="./components/ph-graph.js"></script>
-    <script type="module" src="./components/ph-dialog.js"></script>
-    <script type="module" src="./components/ph-thumb-link.js"></script>
-    <script type="module" src="./components/ph-messages.js"></script>
-    <script type="module" src="./components/ph-add-image.js"></script>
+   <script type="module" src="./components/ph-add-image.js"></script>
+   <script type="module" src="./components/ph-dialog.js"></script>
+   <script type="module" src="./components/ph-graph.js"></script>
+   <script type="module" src="./components/ph-login.js"></script>
+   <script type="module" src="./components/ph-messages.js"></script>
+   <script type="module" src="./components/ph-signed-in.js"></script>
+   <script type="module" src="./components/ph-thumb-link.js"></script>
 </head>
 
 <body>
-    <div id="mapId"></div>
-    <ph-dialog id="controls"></ph-dialog>
-    <ph-messages id="messages" type="info" value="Zoom map to clusters. Click or hover to view image." duration="12"></ph-messages>
-    <ph-thumb-link id="thumb-link"></ph-thumb-link>
-    <ph-menu id="menu"></ph-menu>
-    <div class="place-bottom">
-        <div id="nameDiv" class="card-action" hidden>
-            <a href="/logout" class="waves-effect waves-light btn social facebook" title="Click to logout of this app (only).">
-                <i class="fab fa-facebook"></i><span style="padding-left:6px;border-bottom: 3px;" id="nameTarget"></span>
-            </a>
-        </div>
+   <div id="mapId"></div>
+   <ph-dialog id="controls"></ph-dialog>
+   <ph-messages id="messages" type="info" value="Zoom map to clusters. Click or hover to view image." duration="12">
+   </ph-messages>
+   <ph-thumb-link id="thumb-link"></ph-thumb-link>
+   <ph-menu id="menu"></ph-menu>
+   <div class="place-bottom">
+      <div id="nameDiv" class="name-div" hidden>
+         <a href="/logout" class=""
+            title="Click to logout of this app.">
+            <ph-signed-in></ph-signed-in><span id="nameTarget"></span>
+         </a>
+      </div>
 
-        <div id="loginDiv" class="card-action">
-            <a href="/auth/facebook" class="waves-effect waves-light btn social facebook">
-                <i class="fab fa-facebook"></i> Sign in with facebook
-            </a>
-        </div>
-    </div>
-    <ph-add-image hidden id="add-image"></ph-add-image>
-    <ph-graph></ph-graph>
-    <script src="https://d3js.org/d3.v7.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin="anonymous"></script>
-    <script src="thirdparty/markercluster.js"></script>
-    <script src="lib/latlon.js"></script>
+      <div id="loginDiv" class="card-action">
+         <ph-login></ph-login>
+      </div>
+   </div>
+   <ph-add-image hidden id="add-image"></ph-add-image>
+   <ph-graph></ph-graph>
+   <script src="https://d3js.org/d3.v7.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin="anonymous"></script>
+   <script src="thirdparty/markercluster.js"></script>
+   <script src="lib/latlon.js"></script>
 
-    <script type="module" src="app/facebook.js"></script>
-    <script type="module" src="app/app.js"></script>
+   <script type="module" src="app/facebook.js"></script>
+   <script type="module" src="app/app.js"></script>
 
 </body>
 
