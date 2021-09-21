@@ -3,21 +3,19 @@ import bodyParser from "body-parser";
 import config from "./lib/config.js";
 import ejs from "ejs";
 import mysql from "mysql2/promise";
-import passport from "passport";
-
-import session from "express-session";
 import { spawn } from "child_process";
 
 import Photo from "./lib/photo.js";
-import Security from "./lib/usersecurity.js";
 import StaticMapper from "./lib/staticmapper.js";
-import DevSecurity from "./lib/dev-security.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
 import ExtentRequest from "./src/quadtree/extentrequest.js";
 
+import pointsToJson from "./lib/pointstojson.js";
+
 import KeywordsRouter from "./routers/keywords.js";
 import PhotoRouter from "./routers/photo.js";
+import SecurityRouter from "./routers/securityrouter.js";
 import AlbumRouter from "./routers/album.js";
 
 import { fileURLToPath } from 'url';
@@ -32,8 +30,6 @@ const port = config.port;
 const pool = mysql.createPool(config.connection);
 const photo = new Photo(pool);
 const user = new User(pool);
-let security = null;
-
 
 const thumb = new Thumb(config.server);
 
@@ -55,43 +51,7 @@ app.use('/src', express.static('src'));
 
 app.use('/keywords', keywordsRouter.router);
 app.use('/albumService', albumRouter.router);
-
-app.use(session({
-   resave: false,
-   saveUninitialized: true,
-   secret: 'SECRET'
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(function (user, cb) {
-   console.log("LUSER1", user)
-   cb(null, user);
-});
-
-passport.deserializeUser(function (obj, cb) {
-   console.log("LUSER2", obj)
-   cb(null, obj);
-});
-
-if (config.isLocal.on) {
-   security = new DevSecurity(config);
-} else {
-   security = new Security(user, passport);
-}
-
-
-app.post('/login', passport.authenticate('local', { failureRedirect: '/?success=false' }),
-   function (req, res) {
-      res.redirect('/?success=true');
-   }
-);
-
-app.all('/logout', async (req, res) => {
-   req.logout();
-   res.redirect('/');
-});
+const securityRouter = new SecurityRouter(config, app, user);
 
 app.all('/download/:name', function (req, res) {
    let path = __dirname + config.processDownload.photosDirectory + sanitise(req.params.name);
@@ -110,13 +70,6 @@ app.all('/all', async (req, res) => {
       response = Object.assign(response, { properties: { user: req.user.name, admin: req.user.admin } });
    }
    res.status(200).send(response);
-});
-
-app.all('/user.js', async (req, res) => {
-   let response = security.user(req);
-   let str = "export default " + JSON.stringify(response);
-   res.setHeader('Content-Type', "application/javascript; charset=UTF-8");
-   res.send(str);
 });
 
 app.all('/error', async (req, res) => {
@@ -215,36 +168,10 @@ app.listen(port, function (err) {
 
 
 function isAdmin(req, res, next) {
-   if (security.isAdmin(req)) {
+   if (securityRouter.security.isAdmin(req)) {
       return next();
    }
    res.redirect('/');
-}
-
-// Just an abreviated version of all points.
-function pointsToJson(photos, name = "photos") {
-   return {
-      type: "FeatureCollection",
-      name,
-      features: photos.map(photo => ({
-         type: "Feature",
-         properties: {
-            name: photo.filename,
-            description: photo.description,
-            annotation: photo.annotation,
-            id: photo.id,
-            time_point: photo.time_point,
-            elevation: photo.elevation
-         },
-         geometry: {
-            type: "Point",
-            coordinates: [
-               photo.longitude,
-               photo.latitude
-            ]
-         }
-      }))
-   };
 }
 
 function sanitise(input) {
