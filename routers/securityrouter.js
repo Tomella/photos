@@ -34,7 +34,7 @@ class SecurityRouter {
       }
 
 
-      app.post('/login', passport.authenticate('local', { failureRedirect: '/?success=false' }),
+      app.post('/login', passport.authenticate('local', { failureRedirect: '/?success=login_failed' }),
          function (req, res) {
             res.redirect('/?success=true');
          }

@@ -83,6 +83,17 @@ if(user.name) {
       let addImageCtl = new AddImageCtl(document.querySelector("ph-add-image"));
       addImageCtl.show();
     }
+} else {
+   const urlSearchParams = new URLSearchParams(window.location.search);
+   let entry = urlSearchParams.get("success");
+   if(entry === "login_failed") {
+      message({
+         detail: {
+            type: "warn",
+            value: "Invalid user name or password."
+         }
+      })
+   }
 }
 
 async function broadcastPoints() {
