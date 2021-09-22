@@ -2,30 +2,9 @@ import Map from "./map.js";
 import config from "./config.js";
 import Tracker from "./tracker.js";
 import user from "/user.js";
-import loader from "../lib/loader.js";
+import Icon from "/lib/icon.js";
+import loader from "/lib/loader.js";
 import AddImageCtl from "/lib/addimagectl.js";
-
-class Icon {
-    VIEWING_CLASS = "marker-cluster-viewing"
-
-    constructor(layer) {
-        this.layer = layer;
-    }
-
-    active() {
-        if(this.layer) {
-            let div = this.layer._icon;
-            if(div) div.classList.add(this.VIEWING_CLASS);
-        }
-    }
-
-    inactive() {
-        if(this.layer) {
-            let div = this.layer._icon;
-            if(div) div.classList.remove(this.VIEWING_CLASS);
-        }
-    }
-}
 
 let mapManager = new Map(config.map);
 let clusterSticky = false;
@@ -35,7 +14,6 @@ let lastIcon = new Icon(null);
 mapManager.create();
 // Show all to begin with
 let tracker = new Tracker(config.tracker, mapManager.map);
-
 
 let phDialog = document.querySelector("ph-dialog");
 let phThumbLink = document.querySelector("ph-thumb-link");
@@ -50,24 +28,20 @@ phGraph.data = result;
 phDialog.addEventListener("change", async (e) => {
    broadcastFilteredPoints(e.detail.startDate, e.detail.endDate);
 });
-
 phThumbLink.addEventListener("close", (e) => {
     clusterSticky = false;
     clusterOut();
 });
-
 phThumbLink.addEventListener("edit", (e) => {
     console.log("EDIT: ", e.detail);
     window.location = "/edit/" + e.detail.id;
 });
-
 document.addEventListener("clusterclick", clusterClick);
 document.addEventListener("clusterover", clusterOver);
 document.addEventListener("clusterout", clusterOut);
 document.addEventListener("message", message);
 document.addEventListener("loggedin", loggedIn);
 phGraph.addEventListener("changedates", changeDates);
-
 document.addEventListener("keyup", function(evt) {
     if (evt.key === "Escape" || evt.key === "Esc") {
         clusterSticky = false;
