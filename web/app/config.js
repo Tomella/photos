@@ -11,7 +11,7 @@ export default {
       layers: [
          {
             type: "tileLayer",
-            url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             options: {
                maxZoom: 20,
                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
