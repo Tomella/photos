@@ -36,7 +36,7 @@ template.innerHTML = `
       <button class="undecorated ph-thumb-unstick" title="Hide thumbnail.">X</button>
    </span>
    <div>
-     <a target="ph-thumb-link" class="ph-thumb-link"><img class="ph-thumb-img"></img></a>
+     <a target="ph-thumb-link" class="ph-thumb-link" href="/album"><img class="ph-thumb-img"></img></a>
      <div class="ph-dialog-heading"></div>
      <div class="ph-extra-info"></div>
    </div>
@@ -99,7 +99,9 @@ customElements.define('ph-thumb-link', class ThumbLink extends HTMLElement {
       this._data = value;
       let info = this.$(".ph-extra-info");
       if (value) {
-         info.innerHTML = `<strong>Timestamp: </strong>${value.time_point}<br/><strong>Make/Model: </strong>${value.description}`;
+         let date = new Date(value.time_point);
+         const options = { year: 'numeric', month: 'long', day: 'numeric' };
+         info.innerHTML = `<strong>Date: </strong>${date.toLocaleDateString(undefined, options)}<br/><strong>Make/Model: </strong>${value.description}`;
       } else {
          info.innerHTML = "";
       }
