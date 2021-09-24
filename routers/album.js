@@ -1,5 +1,6 @@
 import express from 'express';
 import Photo from "../lib/photo.js";
+import {zoneFreeDateStr} from "../lib/pointstojson.js";
 
 class AlbumRouter {
     constructor(pool) {
@@ -8,7 +9,11 @@ class AlbumRouter {
 
         // define the home page route
         router.get('/keyword', async (req, res) => {
-            let matches = await this.service.findByKeyword(req.query.keyword)
+            let matches = await this.service.findByKeyword(req.query.keyword);
+            matches.forEach(match => {
+               match.time_point = zoneFreeDateStr(match.time_point);
+            })
+
             res.send(matches);
         })
         
