@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import config from "./lib/config.js";
 import ejs from "ejs";
 import mysql from "mysql2/promise";
@@ -42,7 +41,7 @@ let photos = await photo.all();
 let app = express();
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 // serve static files
 
 app.use(express.static("web"));

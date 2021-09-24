@@ -1,3 +1,5 @@
+import L from "/lib/latlon.js";
+
 export default class Map {
    constructor(config) {
       this.config = config;
