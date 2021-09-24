@@ -8,9 +8,8 @@ import Photo from "./lib/photo.js";
 import StaticMapper from "./lib/staticmapper.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
-import ExtentRequest from "./src/quadtree/extentrequest.js";
 
-import pointsToJson from "./lib/pointstojson.js";
+import pointsToJson, {zoneFreeDateStr} from "./lib/pointstojson.js";
 
 import KeywordsRouter from "./routers/keywords.js";
 import PhotoRouter from "./routers/photo.js";
@@ -82,14 +81,6 @@ app.all('/success', async (req, res) => {
    res.json(data);
 });
 
-app.all('/clusters', async (req, res) => {
-   console.log(req.query);
-   let zoom = (+req.query.zoom) ? req.query.zoom : 18;
-   let request = new ExtentRequest(-179, 179, -89, 89, zoom);
-   let response = await queryingService.getSummary(request);
-   res.status(200).send(response);
-});
-
 app.all('/edit/:id', isAdmin, async (req, res) => {
    let id = req.params.id;
    let data = await photo.findByIdWithAdjacent(id);
@@ -106,6 +97,14 @@ app.all('/edit/:id', isAdmin, async (req, res) => {
          res.redirect('/edit/' + id);
       }
    } else {
+      data.time_point = zoneFreeDateStr(data.time_point);
+      if(data.next) {
+         data.next.time_point = zoneFreeDateStr(data.next.time_point);
+      }
+      if(data.previous) {
+         data.previous.time_point = zoneFreeDateStr(data.previous.time_point);
+      }
+
       ejs.renderFile(__dirname + "/views/edit.ejs", { data: JSON.stringify(data) }, {}, function (err, str) {
          if (err) {
             console.log(err)

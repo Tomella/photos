@@ -167,7 +167,7 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
         let date = new Date(data.time_point);
         this.$name("id").value = data.id;
         this.$name("filename").innerHTML = data.filename;
-        this.$name("created").innerHTML = date.toLocaleString('en-AU', { timeZone: 'UTC' });
+        this.$name("created").innerHTML = date.toLocaleString('en-AU');
 
         this.$name("description").innerHTML = data.description;
         this.$name("annotation").value = data.annotation;
