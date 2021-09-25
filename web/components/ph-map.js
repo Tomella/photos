@@ -1,5 +1,3 @@
-import * as leaflet from "https://cdn.skypack.dev/leaflet";
-
 const template = document.createElement('template');
 
 class PhMap {
