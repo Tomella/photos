@@ -9,7 +9,7 @@ import StaticMapper from "./lib/staticmapper.js";
 import Thumb from "./lib/thumb.js";
 import User from "./lib/user.js";
 
-import pointsToJson, {zoneFreeDateStr} from "./lib/pointstojson.js";
+import pointsToJson from "./lib/pointstojson.js";
 
 import KeywordsRouter from "./routers/keywords.js";
 import PhotoRouter from "./routers/photo.js";
@@ -97,14 +97,6 @@ app.all('/edit/:id', isAdmin, async (req, res) => {
          res.redirect('/edit/' + id);
       }
    } else {
-      data.time_point = zoneFreeDateStr(data.time_point);
-      if(data.next) {
-         data.next.time_point = zoneFreeDateStr(data.next.time_point);
-      }
-      if(data.previous) {
-         data.previous.time_point = zoneFreeDateStr(data.previous.time_point);
-      }
-
       ejs.renderFile(__dirname + "/views/edit.ejs", { data: JSON.stringify(data) }, {}, function (err, str) {
          if (err) {
             console.log(err)
