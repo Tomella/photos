@@ -1,66 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang=en>
 
 <head>
-   <meta charset="utf-8" />
-   <meta content="width=device-width,initial-scale=1" name="viewport">
-   <meta name="description" content="Photo album that shows geolocation on map.">
+    <meta charset=utf-8>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="description" content="Photo album that shows geolocation on map.">
+    <title>Photo Album</title>
+    <link rel="icon" type="image/png" href="../icon.png">
 
-   <title>Photos</title>
-   <link rel="icon" type="image/png" href="icon.png">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin="anonymous" />
-   <link rel="stylesheet" href="thirdparty/markercluster.css" />
-
-   <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-   <style>
-      /* A work around for an annoying little white box on my Google tiles. */
-      .leaflet-google-layer img {
-         transform: scale(1.005);
-      }
-   </style>
-   <link rel="stylesheet" href="app/app.css" />
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin="anonymous"></script>
-   <script type="module" src="./components/ph-add-image.js"></script>
-   <script type="module" src="./components/ph-dialog.js"></script>
-   <script type="module" src="./components/ph-graph.js"></script>
-   <script type="module" src="./components/ph-login.js"></script>
-   <script type="module" src="./components/ph-messages.js"></script>
-   <script type="module" src="./components/ph-signed-in.js"></script>
-   <script type="module" src="./components/ph-thumb-link.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin="anonymous"></script>
+    <script type="module" src="components/ph-globe.js"></script>
+    <script type="module" src="components/ph-download.js"></script>
+    <script type="module" src="components/ph-map.js"></script>
+    <script type="module" src="components/ph-keyword.js"></script>
+    <script type="module" src="components/qr-code.js"></script>
+    <script type="module" src="album/component/al-expand-image.js"></script>
+    <script type="module" src="album/component/al-image-container.js"></script>
+    <script type="module" src="album/component/al-image.js"></script>
+    <script type="module" src="album/component/al-magnify.js"></script>
+    <link rel="stylesheet" href="album/album.css" />
 </head>
 
 <body>
-   <div id="mapId"></div>
-   <ph-dialog id="controls"></ph-dialog>
-   <ph-messages id="messages" type="info" value="Zoom map to clusters. Click or hover to view image." duration="12">
-   </ph-messages>
-   <ph-thumb-link id="thumb-link"></ph-thumb-link>
-   <ph-menu id="menu"></ph-menu>
-   <div class="place-bottom">
-      <div id="nameDiv" class="name-div" hidden>
-         <a href="/logout" class=""
-            title="Click to logout of this app.">
-            <ph-signed-in></ph-signed-in><span id="nameTarget"></span>
-         </a>
-      </div>
-
-      <div id="loginDiv" class="card-action">
-         <ph-login></ph-login>
-      </div>
+   <div>
+      <h1 id="album-title">Select an Album.</h1>
+      <h4>Photo Album</h4>
+      <qr-code title="Share this Album via a QR Code"></qr-code>
    </div>
-   <ph-add-image hidden id="add-image"></ph-add-image>
-   <ph-graph></ph-graph>
-   <script src="https://d3js.org/d3.v7.js"></script>
-   <script src="thirdparty/markercluster.js"></script>
-
-   <script type="module" src="app/app.js"></script>
-
+    <div id="select-album">
+        <button role="button" title="Choose an Album to view" class="select-label">Select Album...</button>
+    </div>
+    <div id="keyword-container">
+        View Album
+        <span class="filter-container">
+            <input class="filter-input" type="text" placeholder="Filter..."></input>
+            <button disabled class="select-close">X</button>
+        </span>
+        <div class="keywords">
+            Loading album names...
+        </div>
+    </div>
+    <al-image-container></al-image-container>
+    <al-expand-image hidden></al-expand-image>
+    <ph-map hidden></ph-map>
 </body>
+<script type="module" src="album/album.js"></script>
 
 </html>

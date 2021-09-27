@@ -33,16 +33,16 @@ export default class LocalTime {
    constructor(str) {
       this.str = str;
       // 2021-01-24T14:41:30.000Z
-      let parts = str.split("T");
-      if(parts.length == 2) {
-         let date = parts[0].split("-");
+      let [dateStr, timeStr] = str.split("T");
+      if(timeStr) {
+         let date = dateStr.split("-");
          if(date.length == 3) {
             this.year = +date[0];
             this.month = LocalTime.MONTHS[date[1]];
             this.date = parseInt(date[2], 10);
          }
 
-         let time = parts[1].substr(0,8).split(":");
+         let time = timeStr.substr(0,8).split(":"); // Strip zone and milliseconds
          if(time.length == 3) {
             this.hour = parseInt(time[0], 10);
             this.minute = parseInt(time[1], 10);
