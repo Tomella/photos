@@ -6,7 +6,7 @@ export default {
         heading: "#select-album",
         container: "#keyword-container",
         keywords: ".keywords",
-        redirect: "/?keyword=",
+        redirect: "?keyword=",
         filter: ".filter-input"
     },
 

@@ -78,7 +78,7 @@ template.innerHTML = `
   .next {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 47%;
     width: auto;
     padding: 16px;
     margin-top: -50px;

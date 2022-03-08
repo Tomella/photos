@@ -2,52 +2,33 @@
 <html lang=en>
 
 <head>
-    <meta charset=utf-8>
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta name="description" content="Photo album that shows geolocation on map.">
-    <title>Photo Album</title>
-    <link rel="icon" type="image/png" href="../icon.png">
+   <meta charset=utf-8>
+   <meta content="width=device-width,initial-scale=1" name="viewport">
+   <meta name="description" content="Photo album that shows geolocation on map.">
+   <title>Photo Album</title>
+   <link rel="icon" type="image/png" href="../icon.png">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="anonymous"></script>
-    <script type="module" src="components/ph-cog.js"></script>
-    <script type="module" src="components/ph-globe.js"></script>
-    <script type="module" src="components/ph-download.js"></script>
-    <script type="module" src="components/ph-map.js"></script>
-    <script type="module" src="components/ph-keyword.js"></script>
-    <script type="module" src="components/qr-code.js"></script>
-    <script type="module" src="album/component/al-expand-image.js"></script>
-    <script type="module" src="album/component/al-image-container.js"></script>
-    <script type="module" src="album/component/al-image.js"></script>
-    <script type="module" src="album/component/al-magnify.js"></script>
-    <link rel="stylesheet" href="album/album.css" />
+   <link rel="stylesheet" href="landing/app.css" />
+
+   <script type="module" src="components/ph-panel.js"></script>
+   <script type="module" src="components/ph-keyword.js"></script>
 </head>
 
-<body>
-   <div>
-      <h1 id="album-title">Select an Album.</h1>
-      <h4>Photo Album</h4>
-      <qr-code title="Share this Album via a QR Code"></qr-code>
-      <ph-cog title="Share this Album via a QR Code"></ph-cog>
-   </div>
-    <div id="select-album">
-        <button role="button" title="Choose an Album to view" class="select-label">Select Album...</button>
-    </div>
-    <div id="keyword-container">
-        View Album
-        <span class="filter-container">
-            <input class="filter-input" type="text" placeholder="Filter..."></input>
-            <button disabled class="select-close">X</button>
-        </span>
-        <div class="keywords">
-            Loading album names...
-        </div>
-    </div>
-    <al-image-container></al-image-container>
-    <al-expand-image hidden></al-expand-image>
-    <ph-map hidden></ph-map>
+<body style="padding:30px;">
+   <h1>Photos</h1>
+   <ph-panel>
+      <h3>Login</h3>
+   </ph-panel>
+   <ph-panel>
+      <h3><a href="album.html">View albums</a></h3>
+   </ph-panel>
+   <ph-panel>
+      <h3><a href="photosmap.html">View photos on map</a></h3>
+   </ph-panel>
+   <ph-panel>
+      <h3><a href="edit/999999999">Edit latest photo</a></h3>
+   </ph-panel>
 </body>
-<script type="module" src="album/album.js"></script>
+<script type="module" src="landing/app.js"></script>
 
 </html>
