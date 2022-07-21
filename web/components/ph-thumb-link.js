@@ -29,6 +29,12 @@ template.innerHTML = `
    overflow: hidden;
    text-overflow: ellipsis;
 }
+.ph-extra-info {
+   width: 255px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
 </style>
 <div class="ph-thumb-link-container">
    <span style="position:absolute;right:0">
