@@ -91,7 +91,7 @@ function clearList() {
 
 async function upload(files) {
     //FILL FormData WITH FILE DETAILS.
-    let url = "/uploadTest"
+    let url = "/upload"
     var postData = new FormData();
 
     files.forEach(file => {
