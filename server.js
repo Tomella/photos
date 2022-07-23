@@ -110,17 +110,6 @@ app.all('/edit/:id', isAdmin, async (req, res) => {
 });
 
 // Direction can be right, left, 180 or original. All are relative to the original photo.
-app.all('/rotatethumbOld/:direction', isAdmin, async (req, res) => {
-   try {
-      let data = await photo.findById(req.query.id);
-      await thumb.rotateThumb(data.filename, req.params.direction);
-      res.send(data);
-   } catch (e) {
-      res.send(e);
-   }
-});
-
-// Direction can be right, left, 180 or original. All are relative to the original photo.
 app.all('/rotatethumb/:direction', isAdmin, async (req, res, next) => {
    let data = await photo.findById(req.query.id);
 

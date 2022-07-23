@@ -12,6 +12,20 @@
     text-align: center;
 }
 
+.override-container {
+    position: fixed;
+    top: 5px;
+    left: 40px;
+}
+
+.override-container label {
+    font-weight: bold;
+}
+
+.override-container input {
+    width: 8em;
+}
+
 .aster {
     color:tomato;
     font-weight: bold;
@@ -45,4 +59,12 @@ button {
 
 button:disabled {
     color: gray;
+}
+
+ph-messages {
+    position: fixed;
+    top: 65px;
+    left: 45px;
+    right: 45px;
+    z-index: 10;
 }

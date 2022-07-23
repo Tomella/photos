@@ -9,6 +9,9 @@ let rejected = 0;
 const EXTENSIONS = ["image/jpeg"];
 const clearBtn = document.querySelector(".clear-btn");
 const submitBtn = document.querySelector(".submit-btn");
+const clearLatLngBtn = document.querySelector(".clr-latlng-btn");
+const setLatLngBtn = document.querySelector(".set-latlng-btn"); 
+const latLngPanel = document.querySelector(".override-inputs");
 
 attachHandlers();
 
@@ -64,6 +67,18 @@ function attachHandlers() {
             duration: 7
         });
     });
+    
+    setLatLngBtn.addEventListener("click", (ev) => {
+        latLngPanel.removeAttribute("hidden");
+        setLatLngBtn.setAttribute("hidden", "hidden");
+        latLngPanel.querySelector("input").focus()
+    });
+
+    clearLatLngBtn.addEventListener("click", (ev) => {
+        setLatLngBtn.removeAttribute("hidden");
+        latLngPanel.setAttribute("hidden", "hidden");
+    });
+
 }
 
 function clearList() {
@@ -76,13 +91,20 @@ function clearList() {
 
 async function upload(files) {
     //FILL FormData WITH FILE DETAILS.
+    let url = "/uploadTest"
     var postData = new FormData();
 
     files.forEach(file => {
         postData.append("file", file);
     });
 
-    let response = await fetch("/upload", {
+    if(!latLngPanel.hasAttribute("hidden")) {
+        url += "?latitude=" + latLngPanel.querySelector("[name=latitude]").value + "&longitude=" + latLngPanel.querySelector("[name=longitude]").value
+        //postData.append("latitude", latLngPanel.querySelector("[name=latitude]").value);
+        //postData.append("longitude", latLngPanel.querySelector("[name=longitude]").value);
+    }
+
+    let response = await fetch(url, {
         body: postData,
         method: 'POST',
         cache: 'no-cache'

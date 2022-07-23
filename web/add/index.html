@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <div class="override-container" title="Manually set or override the EXIF latitude an longitude.">
+        <button class="set-latlng-btn" title="Override/set latitude and longitude for these photos. (Use decimal degrees)">Set Lat/Lng</button>
+        <span class="override-inputs" hidden>
+            <label for="latitude">Latitude</label>
+            <input name="latitude" class="override-latitude" type="number">
+            <label for="longitude">Longitude</label>
+            <input name="longitude" class="override-longitude" type="number">
+            <button class="clr-latlng-btn" title="Clear and use photos' EXIF data only.">Clear</button>
+        </span>
+    </div>
     <div class="drop-container">
         <h2>Drop Photos Here</h2>
     </div>
@@ -26,7 +36,7 @@
 
     </span>
     <script type="module" src="add.js"></script>    
-    <ph-messages id="messages" type="info" value="Drag and drop JPG photos onto the drop zone." duration="12">
+    <ph-messages id="messages" type="info" value="Drag and drop JPG photos onto the drop zone." duration="500">
     </ph-messages>
 </body>
 
