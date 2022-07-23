@@ -53,20 +53,23 @@ class PhotoRouter {
             let longitude = req.query.longitude;
             let jobId = uuidv4();
 
+            // Do we overwrite or set lat/lng?
+            if(typeof latitude != "undefined" && typeof longitude != "undefined") {
+                req.files.forEach(element => {
+                    element.latitude = latitude;
+                    element.longitude = longitude;
+                });
+            }
+            let handle = await fs.writeFile("uploads/" + jobId + ".json", JSON.stringify(req.files));
+
             console.log(req.query, typeof latitude, typeof longitude);
 
-            let args = ['lib/processupload.js', '--file=uploads/' + jobId + '.json']
+           //const subprocess = spawn("node", ['lib/processupload.js', '--file=uploads/' + jobId + '.json'], {
+            //    detached: true,
+            //    stdio: 'ignore'
+            //});
 
-            if(typeof latitude != "undefined" && typeof longitude != "undefined") {
-                args.push("--latitude=" + latitude);
-                args.push("--longitude=" + longitude);
-            }
-            const subprocess = spawn("node", args, {
-                detached: true,
-                stdio: 'ignore'
-            });
-
-            subprocess.unref();
+            //subprocess.unref();
             res.send({ jobId });
             // req.files is array of `photos` files
             // req.body will contain the text fields, if there were any

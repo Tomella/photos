@@ -27,12 +27,12 @@ button {
 <div class="ph-login">
    <button class="ph-login-show">Login...</button>
    <form action="/login" method="post" hidden="hidden">
-      <label for="username">User Name</label><input type="text" name="username" placeholder="Username">
+      <label for="username">User Name</label><input type="text" name="username" placeholder="Username"></input>
       <br/>
-      <label for="username">Password</label><input type="password" name="password" placeholder="Password">
+      <label for="password">Password</label><input type="password" name="password" placeholder="Password"></input>
       <br/>
-      <button class="ph-cancel">Cancel</button>
-      <button style="float: right" type="submit" class="ph-submit" disabled="disabled">Sign in</button>
+      <button type="submit" class="ph-submit" disabled="disabled">Sign in</button>
+      <button style="float: right" class="ph-cancel">Cancel</button>
    </form>
 </div>
 `;
@@ -66,6 +66,24 @@ customElements.define('ph-login', class LoginElement extends HTMLElement {
       show.addEventListener("click", ev => {
          show.setAttribute("hidden", "hidden");
          form.removeAttribute("hidden");
+         username.focus();
+      });
+
+      username.addEventListener("input", ev => {
+         if (username.value && password.value) {
+            submit.removeAttribute("disabled");
+         } else {
+            submit.setAttribute("disabled", "disabled");
+         }
+
+      });
+      
+      password.addEventListener("input", ev => {
+         if (username.value && password.value) {
+            submit.removeAttribute("disabled");
+         } else {
+            submit.setAttribute("disabled", "disabled");
+         }
       });
 
       cancel.addEventListener("click", ev => {
@@ -75,21 +93,6 @@ customElements.define('ph-login', class LoginElement extends HTMLElement {
          return false;
       });
 
-      username.addEventListener("input", ev => {
-         if(username.value && password.value) {
-            submit.removeAttribute("disabled");
-         } else {
-            submit.setAttribute("disabled", "disabled");
-         }
-
-      });
-      password.addEventListener("input", ev => {
-         if(username.value && password.value) {
-            submit.removeAttribute("disabled");
-         } else {
-            submit.setAttribute("disabled", "disabled");
-         }
-      });
    }
 
 });
