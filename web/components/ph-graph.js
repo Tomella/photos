@@ -118,7 +118,7 @@ customElements.define('ph-graph', class GraphElement extends HTMLElement {
          .domain(d3.extent(data, d => new Date(d.date)))
          .range([margin.left, width - margin.right]);
 
-      let y = d3.scaleLinear()
+      let y = d3.scaleSqrt()
          .domain([0, d3.max(data, d => d.value)]).nice()
          .range([height - margin.bottom, margin.top]);
 
