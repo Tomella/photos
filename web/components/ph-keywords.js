@@ -19,7 +19,7 @@ template.innerHTML = `
   }
 
   #container {
-    max-width:fit-content; 
+    max-width: 42em; 
     opacity:0.8;
   }
 </style>
