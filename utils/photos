@@ -20,4 +20,12 @@ cd photos
 # options
 LOGFILE=/home/photos/log/photos.log
 LOCKFILE=/var/lock/subsys/photos
-/usr/bin/forever start -a -l $LOGFILE --spinSleepTime 60000 --uid photos server.js
+
+# On some machines forever is here
+FOREVER=/usr/bin/forever
+if [ ! -f $FOREVER ]; then
+  # if not in the default it is here.
+  FOREVER=/usr/local/bin/forever
+fi
+
+$FOREVER start -a -l $LOGFILE --spinSleepTime 60000 --uid photos server.js
