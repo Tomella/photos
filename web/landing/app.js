@@ -1,17 +1,22 @@
-import user from "/user.js";
+import User from "/lib/user.js";
+
+let user = new User();
+
+
+console.log("1", user.hasSession());
+
+document.addEventListener("usersession", (ev) => {
+  console.log("EvS", ev)
+});
+
+console.log("2");
+
+document.addEventListener("usernosession", (ev) => {
+  console.log("EvN", ev)
+});
+
 
 console.log(user);
-
-
-if(user.name) {
-   console.log("User fetched", user);
-   document.dispatchEvent(new CustomEvent('loggedin', { detail: user}));
-
-   if(user.admin === 'Y') {
-     let addImageCtl = new AddImageCtl(document.querySelector("ph-add-image"));
-     addImageCtl.show();
-   }
-}
 
 
 

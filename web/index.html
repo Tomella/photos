@@ -15,19 +15,17 @@
 </head>
 
 <body style="padding:30px;">
-   <h1>Photos</h1>
-   <ph-panel>
-      <h3>Login</h3>
-   </ph-panel>
-   <ph-panel>
-      <h3><a href="album.html">View albums</a></h3>
-   </ph-panel>
-   <ph-panel>
-      <h3><a href="photosmap.html">View photos on map</a></h3>
-   </ph-panel>
-   <ph-panel>
-      <h3><a href="edit/999999999">Edit latest photo</a></h3>
-   </ph-panel>
+   <div class="container">
+      <div class="section-title no-border">
+         <h2 class="margin-bottom-0">Explore Photos</h2>
+      </div>
+      <div class="column-grid">
+         <ph-panel href="album.html" title="View albums"></ph-panel>
+         <ph-panel href="photosmap.html" title="View photos on map"></ph-panel>
+         <ph-panel href="edit/999999999" title="Edit latest photo"></ph-panel>
+         <ph-panel href="photosmap.html" title="View photos on map"></ph-panel>
+      </div>
+   </div>
 </body>
 <script type="module" src="landing/app.js"></script>
 
