@@ -155,6 +155,8 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
             let confirm = this.$("#form-confirm");
             confirm.hidden = false;
             confirm.classList.add("form-confirm-show");
+            let btn = this.$name("form-delete-confirm");
+            btn.focus();
         });
 
         function broadcast(direction, data) {

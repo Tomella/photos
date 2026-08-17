@@ -113,10 +113,10 @@ function addListeners() {
     document.addEventListener("thumbrotate", createThumb);
     document.addEventListener("saveannotation", saveAnnotation);
     document.addEventListener("savekeyword", saveKeyword);
-    document.addEventListener("removekeyword", removeKeyword);
-    document.addEventListener("deletephoto", deletePhoto);
-    document.addEventListener("message", message);
-    document.addEventListener("keydown", pressed);
+    document.addEventListener("removekeyword", removeKeyword); 
+    document.addEventListener("deletephoto", deletePhoto); // Listen for delete photo events from components.
+    document.addEventListener("message", message); // Listen for messages from components.
+    document.addEventListener("keydown", pressed); // Listen for left/right arrow keys to navigate to next/previous photo.
 }
 
 function prepareThumb() {
@@ -168,7 +168,10 @@ function pressed(event) {
         url = data.previous && data.previous.url ? data.previous.url : null;
     } else if (event.key === "ArrowRight") {
         url = data.next && data.next.url ? data.next.url : null;
+    } else if(event.key === "Delete") {
+        // Handle delete key press
     }
+
     if (url) {
         window.location.replace(url);
     }
