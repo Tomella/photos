@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: #f4f4f4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cdd4db;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 14px;
+            background: #276ef1;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #1f5bd6;
+        }
+
+        .qr-output {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .qr-output canvas,
+        .qr-output img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hint {
+            color: #5f6f88;
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+    </style>
+
+    <script type="module" src="components/qr-code-custom.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <label for="urlInput">Enter a URL</label>
+        <input id="urlInput" type="url" placeholder="https://example.com" autocomplete="off" />
+        <button id="generateBtn" type="button">Generate QR Code</button>
+        <qr-code title="Share this Album via a QR Code"></qr-code>
+        <p class="hint">Type a text and click the button to generate the QR code.</p>
+    </div>
+
+    <script>
+        function createQrCode(text, size = 256) {
+
+        }
+
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const urlInput = document.getElementById('urlInput');
+            const qrOutput = document.getElementsByTagName('qr-code')[0];
+            const value = urlInput.value.trim();
+
+            qrOutput.setAttribute('value', value);
+
+        });
+    </script>
+</body>
+
+</html>
+'@

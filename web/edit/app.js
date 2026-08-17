@@ -116,6 +116,7 @@ function addListeners() {
     document.addEventListener("removekeyword", removeKeyword);
     document.addEventListener("deletephoto", deletePhoto);
     document.addEventListener("message", message);
+    document.addEventListener("keydown", pressed);
 }
 
 function prepareThumb() {
@@ -158,5 +159,17 @@ function prepareNextPrevious() {
         data.previous.thumbPath = config.tracker.thumbsPath + data.previous.filename;
         data.previous.url = "/edit/" + data.previous.id;
         nextPrevious.previous = data.previous;
+    }
+}
+
+function pressed(event) {
+    let url = null;
+    if (event.key === "ArrowLeft") {
+        url = data.previous && data.previous.url ? data.previous.url : null;
+    } else if (event.key === "ArrowRight") {
+        url = data.next && data.next.url ? data.next.url : null;
+    }
+    if (url) {
+        window.location.replace(url);
     }
 }
