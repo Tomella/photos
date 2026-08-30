@@ -39,6 +39,27 @@ class PhotoRouter {
             }
         });
 
+        app.all('/deleteService/:id', ...chain, async (req, res) => {
+            let id = +req.params.id;  // Cast it to a number so it is harmless.
+
+            let record = await this.photo.findById(id);
+
+            console.log(id, record)
+            if (record) {
+                try {
+                    let response = await this.killer.remove(record.filename);
+                    let del = await this.photo.delete(id);
+                    console.log(response, del);
+                    res.send({ success: true, message: "Photo deleted successfully." });
+                } catch (e) {
+                    console.log(e);
+                    res.send({ success: false, message: "Error deleting photo.", error: e.message });
+                }
+            } else {
+                res.send({ success: false, message: "Photo not found." });
+            }
+        });
+
         app.post("/pupload", ...chain, async (req, res) => {
             console.log(req)
         });

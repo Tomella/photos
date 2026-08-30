@@ -35,7 +35,7 @@ template.innerHTML = `
     z-index: 2;
   }
   
-  .close, .map-button, .download-button {
+  .close, .map-button, .key-button, .trash-button, .download-button {
     color: white;
     position: absolute;
     top: 10px;
@@ -50,8 +50,16 @@ template.innerHTML = `
   }
 
   .download-button {
-   top: 92px;
-}
+      top: 92px;
+   }
+
+  .key-button {
+      top: 146px;
+   }
+
+   .trash-button {
+      top: 190px;
+   }
 
   .close:hover,
   .close:focus {
@@ -124,6 +132,8 @@ template.innerHTML = `
    <span class="close cursor" title="Close viewer, return to album view.">×</span>
    <span class="map-button cursor" title="See on a map where this photo was taken."><ph-globe></ph-globe></span>
    <span class="download-button cursor" title="Download this photo."><ph-download></ph-download></span>
+   <span class="key-button cursor admin-controls" hidden="hidden" title="Manage keywords."><ph-key></ph-key></span>
+   <span class="trash-button cursor admin-controls" hidden="hidden"  title="Delete this photo."><ph-trash></ph-trash></span>
    <div class="modal-content">
       <div class="numbertext"></div>
       <div class="mySlides" style="display: block;"></div>
@@ -136,12 +146,15 @@ template.innerHTML = `
 `;
 
 customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElement {
-   static get observedAttributes() { return ['index', 'hidden']; }
+   static get observedAttributes() { return ['index', 'hidden', 'admin']; }
 
    $(selector) {
       return this.shadowRoot && this.shadowRoot.querySelector(selector);
    }
 
+   $$(selector) {
+      return this.shadowRoot && this.shadowRoot.querySelectorAll(selector);
+   }
    constructor() {
       super();
       const root = this.attachShadow({ mode: 'open' });
@@ -152,6 +165,14 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
          const event = new CustomEvent('map-toggle', {
             bubbles: true,
             composed: true
+         });
+         this.dispatchEvent(event);
+      });
+
+      this.$("ph-trash").addEventListener("click", (ev) => {
+         const event = new CustomEvent('ondelete', {
+            bubbles: true,
+            composed: true,
          });
          this.dispatchEvent(event);
       });
@@ -242,6 +263,14 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
    _hidden() {
       let hidden = this.hasAttribute("hidden");
       this.$(".modal").hidden = !!hidden;
+   }
+   
+   _admin() {
+      let admin = this.hasAttribute("admin");
+      console.log("Admin attribute:", admin);
+      this.$$(".admin-controls").forEach(el => {
+         el.hidden = !admin;
+      });
    }
 
    attributeChangedCallback(attr, oldValue, newValue) {

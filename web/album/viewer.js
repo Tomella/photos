@@ -6,6 +6,7 @@ export default class Viewer {
 
    initialise(data) {
       this._data = data;
+      this.index = 0;
       let container = this.container = document.querySelector("al-expand-image");
 
       container.setAttribute("base", this.config.photosPath);
@@ -19,10 +20,21 @@ export default class Viewer {
       });
    }
 
-   show(idx) {
+   remove(id) {
+      let index = this._data.findIndex(photo => photo.id === id);
+      this._data.splice(index, 1);
+      this.hide();
+      if(this._data.length) {
+         let i = index >= this._data.length ? 0 : index;
+         this.show(i);
+      } 
+   }
+
+   show(idx = this.index) {
       this.container.removeAttribute("hidden");
       this.container.setAttribute("index", idx);
       document.querySelector("body").classList.add("viewer");
+      this.index = idx;
    }
 
    hide() {

@@ -46,4 +46,12 @@ customElements.define('al-image-container', class AlbumImageContainer extends HT
             }
         });
     }
+
+    removeImage(id) {
+        console.log("Removing image with id:", id);
+        const imageToRemove = this.querySelector(`al-image[data-id="${id}"]`);
+        if (imageToRemove) {
+            imageToRemove.remove();
+        }
+    }
 });
