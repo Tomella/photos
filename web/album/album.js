@@ -134,7 +134,7 @@ async function buildList() {
       container.appendChild(image);
 
       image.addEventListener("click", el => {
-         viewer.show(idx);
+         viewer.show(feature.id);
          container.setAttribute("hidden", true);
       });
    });
