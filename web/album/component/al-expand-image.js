@@ -169,6 +169,18 @@ customElements.define('al-expand-image', class AlbumExpandImage extends HTMLElem
          this.dispatchEvent(event);
       });
 
+      this.$("ph-key").addEventListener("click", (ev) => {
+         const event = new CustomEvent('onkeyword', {
+            bubbles: true,
+            composed: true
+         });
+         this.dispatchEvent(event);
+      });
+
+      this.$("ph-key").addEventListener("albumkeywordremoved", (ev) => {
+         console.log("al-expand-iamge: Album keyword removed event received in al-expand-image");
+      });
+
       this.$("ph-trash").addEventListener("click", (ev) => {
          const event = new CustomEvent('ondelete', {
             bubbles: true,

@@ -1,9 +1,16 @@
 import loader from "../lib/loader.js";
 import config from "./config.js";
 import Keyword from "./keyword.js";
+import Message from "../lib/message.js";
+import PhotoKeywords from "./photokeywords.js";
 import Viewer from "./viewer.js";
 import LocalTime from "../lib/localtime.js";
 import user from "/user.js";
+
+const FETCH_POST = {
+    method: 'POST',
+    cache: 'no-cache'
+};
 
 let intv = null;
 let period = 250;
@@ -45,6 +52,21 @@ window.onload = async (el) => {
          counter();
       }
    });
+   
+   const photoKeywords = new PhotoKeywords(config.photokeywords, entry);
+   document.addEventListener("onkeyword", async (ev) => {
+      let index = +ev.target.getAttribute("index");
+      let photo = response[index];
+      await photoKeywords.preparePhoto(photo);
+   });
+   
+   document.addEventListener("savekeyword", async (ev) => {
+      postMessage("info", "Adding keyword to photo.", 3);
+   });
+
+   document.addEventListener("deletedkeyword", async (ev) => {
+      postMessage("info", "Removing keyword from photo.", 3);
+   });
 
    document.addEventListener("ondelete", ev => {
       console.log("Delete event received");
@@ -79,6 +101,10 @@ window.onload = async (el) => {
 
    });
 
+   document.addEventListener("albumkeywordremoved", (ev) => {
+      window.location.reload();  
+   });
+
    let updateAfterDelete = false;
    async function deletePhoto(detail) {
       //postMessage("info", "Deleting photo...", 10);
@@ -88,13 +114,23 @@ window.onload = async (el) => {
       );
       let data = await response.json();
       console.log("Delete response:", data);
-      if(data.success) {
+      if (data.success) {
          console.log("success", "Photo deleted.", 6);
          let container = document.querySelector("al-image-container");
          viewer.remove(detail.id);
          container.removeImage(detail.id);
          updateAfterDelete = true;
       }
+   }
+
+   function removeFromAlbum(detail) {
+      console.log(detail);
+      console.log("success", "Photo deleted.", 6);
+      let container = document.querySelector("al-image-container");
+      viewer.remove(detail.id);
+      container.removeImage(detail.id);
+      updateAfterDelete = true;
+      
    }
 
    document.addEventListener("download", ev => {
@@ -105,7 +141,7 @@ window.onload = async (el) => {
    });
 
    document.addEventListener("map-toggle", ev => {
-      if(map.hasAttribute("hidden")) {
+      if (map.hasAttribute("hidden")) {
          map.removeAttribute("hidden");
          let index = +ev.target.getAttribute("index");
          let photo = response[index];
@@ -114,7 +150,7 @@ window.onload = async (el) => {
          map.setAttribute("hidden", "hidden");
       }
    });
-   
+
    document.addEventListener("photo-change", ev => {
       if (!map.hasAttribute("hidden")) {
          let index = +ev.target.getAttribute("index");
@@ -123,6 +159,7 @@ window.onload = async (el) => {
       }
    });
 }
+
 
 async function buildList() {
    let response = await loader("/albumService/keyword" + window.location.search);
@@ -165,4 +202,9 @@ function update() {
    console.log("updating...");
    document.querySelector("al-image-container").update();
    intv = null;
+}
+
+function postMessage(type, value, duration = 3) {
+   let messages = new Message(document.querySelector("ph-messages"));
+   messages.post({ value, type, duration });
 }

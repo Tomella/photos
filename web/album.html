@@ -17,7 +17,11 @@
     <script type="module" src="components/ph-map.js"></script>
     <script type="module" src="components/ph-modal.js"></script>
     <script type="module" src="components/ph-keyword.js"></script>
+    <script type="module" src="/components/ph-keyword-add.js"></script>
+    <script type="module" src="components/ph-keywords.js"></script>
     <script type="module" src="components/ph-key.js"></script>
+    <script type="module" src="components/ph-messages.js"></script>
+    <script type="module" src="components/ph-my-keywords.js"></script>
     <script type="module" src="components/ph-trash.js"></script>
     <script type="module" src="components/qr-code.js"></script>
     <script type="module" src="components/ph-navigation.js"></script>
@@ -57,6 +61,19 @@
         <button id="deletePhotoNo" class="ph-modal-button">No</button>
         <button id="deletePhotoYes" class="ph-modal-button">Yes</button>
     </ph-modal>
+    <ph-modal id="updateKeywords" title="Manage Keywords">
+        <ph-my-keywords></ph-my-keywords>
+        <ph-keywords></ph-keywords>
+    </ph-modal>
+
+    <ph-modal title="Are you sure?" id="deleteKeywordModal">
+        <p>Are you sure you want to remove this keyword from the album? This action cannot be undone easily.</p>
+        <br/>
+        <button id="deleteKeywordNo" class="ph-modal-button">No</button>
+        <button id="deleteKeywordYes" class="ph-modal-button">Yes</button>
+    </ph-modal>
+
+    <ph-messages id="messages" type="info" value="Select an album to view." duration="4"></ph-messages>
 </body>
 <script type="module" src="album/album.js"></script>
 

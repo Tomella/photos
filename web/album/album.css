@@ -148,3 +148,12 @@ ph-cog {
     right: 142px;
     top: 20px;
 }
+
+#messages {
+    position: fixed;
+    left: 20px;
+    bottom: 60px;
+    display: inline-block;
+    white-space: nowrap;
+    z-index: 200;
+}

@@ -176,18 +176,6 @@ customElements.define('ph-photo-form', class PhotoForm extends HTMLElement {
         this.$name("latlong").innerHTML = data.latitude + "° / " + data.longitude + "°";
         this.$name("elevation").innerHTML = data.elevation + "m";
         this.$("ph-my-keywords").data = data.keywords;
-
-
-        this.addEventListener("keywordclick", (ev) => {
-            console.log("From form Keyword cllicked.....")
-            ev.stopPropagation();
-            const event = new CustomEvent('removekeyword', {
-                bubbles: true,
-                composed: true,
-                detail: ev.detail
-            });
-            this.dispatchEvent(event);
-        });
     }
 
     refreshKeywords() {

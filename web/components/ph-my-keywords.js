@@ -39,10 +39,21 @@ customElements.define('ph-my-keywords', class Keywords extends HTMLElement {
         // Normally you are adding the template
         const root = this.attachShadow({ mode: 'open' })
         root.appendChild(template.content.cloneNode(true));
+
+        this.addEventListener("keywordclick", (ev) => {
+            console.log("From form Keyword cllicked.....")
+            ev.stopPropagation();
+            const event = new CustomEvent('removekeyword', {
+                bubbles: true,
+                composed: true,
+                detail: ev.detail
+            });
+            this.dispatchEvent(event);
+        });
     }
 
     set data(value = []) {
-        this._data = data;
+        this._data = value;
         let container = this.$("#container");
         container.innerHTML = "<b>Keywords</b>";
         value.forEach(datum => {

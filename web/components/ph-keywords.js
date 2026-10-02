@@ -45,6 +45,19 @@ customElements.define('ph-keywords', class Keywords extends HTMLElement {
         root.appendChild(template.content.cloneNode(true));
     }
 
+    connectedCallback() {
+        this.addEventListener("keywordclick", (ev) => {
+            console.log("A Keyword clicked.....")
+            ev.stopPropagation();
+            const event = new CustomEvent('savekeyword', {
+                bubbles: true,
+                composed: true,
+                detail: ev.detail
+            });
+            this.dispatchEvent(event);
+        });
+    }
+
     set data(value = []) {
         this._filter = "";
         console.log("Getting keywords data")
@@ -59,19 +72,6 @@ customElements.define('ph-keywords', class Keywords extends HTMLElement {
             this._applyFilter();
         });
 
-
-        this.addEventListener("keywordclick", (ev) => {
-            console.log("A Keyword clicked.....")
-            ev.stopPropagation();
-            const event = new CustomEvent('savekeyword', {
-                bubbles: true,
-                composed: true,
-                detail: ev.detail
-            });
-            this.dispatchEvent(event);
-        });
-
-
         this._data.forEach(datum => {
             let el = document.createElement("ph-keyword");
             el.title = "Click to add keyword to current photo."
@@ -79,7 +79,6 @@ customElements.define('ph-keywords', class Keywords extends HTMLElement {
             el.value = datum.id;
             container.appendChild(el);
         });
-
     }
 
     _applyFilter() {

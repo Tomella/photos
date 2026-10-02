@@ -10,6 +10,11 @@ export default {
         filter: ".filter-input"
     },
 
+    photokeywords: {
+        keywordsUrl: "/albumService/photosKeywords?id=",
+        saveKeywordUrl: "/keywords/save/"
+    },
+
     viewer: {
         photosPath: "https://photos.geospeedster.com/photos/",
         thumbsPath: "https://photos.geospeedster.com/photos/thumbs/",

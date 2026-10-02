@@ -1,7 +1,7 @@
 import Map from "/app/map.js";
 import config from "./config.js";
 import Thumb from "./thumb.js";
-import Message from "./message.js";
+import Message from "../lib/message.js";
 
 const FETCH_POST = {
     method: 'POST',
